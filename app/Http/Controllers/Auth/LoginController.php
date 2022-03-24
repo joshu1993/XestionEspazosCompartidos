@@ -130,8 +130,10 @@ class LoginController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-       // $errors = [$this->username() => trans('auth.failed')];
-       $errors = [ 'message' => __('auth.failed')];
+        $errors = [$this->username() => trans('auth.failed')];
+       //$errors = [ 'message' => __('auth.failed')];
+
+
        
 
         // Load user from database
