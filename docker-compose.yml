@@ -1,0 +1,98 @@
+version: "3.8"
+
+services:
+
+  #PHP-FPM Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/local.ini
+
+    networks:
+      - app-network
+      
+    #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+
+    ports:
+      - "8081:80"   
+
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      
+    networks:
+      - app-network
+  
+    #Mariadb Service
+  db:
+    image: mariadb
+    container_name: db
+    restart: unless-stopped
+    tty: true
+
+    ports:
+      - "3306:3306"
+
+    environment:
+      MYSQL_DATABASE: XECdb
+      MYSQL_ROOT_PASSWORD: admin
+        
+    volumes:
+      - mariadbdata:/var/lib/mysql
+      - ./mysql/my.conf:/etc/mysql/my.cnf
+      
+    networks:
+      - app-network
+  
+  phpmyadmin:
+    image: phpmyadmin
+        
+    ports:
+      - "8000:80"
+       
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    
+    networks:
+      - app-network
+
+  npm:
+
+    image: node:latest
+    
+    container_name: npm
+    
+    volumes:
+      - ./:/var/www
+   
+    working_dir: /var/www
+    
+    entrypoint: ['npm', '--no-bin-links']
+    
+    networks:
+      - app-network      
+    
+
+  #Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  mariadbdata:
+    driver: local

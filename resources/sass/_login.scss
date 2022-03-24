@@ -1,0 +1,187 @@
+
+
+.main-content.login-page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+}
+
+.main-content.login-page .container {
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+
+.container-login,
+.container-register{
+    
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/images/esei.jpg);
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100% !important;
+    height: 100%;
+    position: relative;
+
+    .velo{
+    	width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .div-app-name{
+    	font-size: 23px;
+	    margin-bottom: 0px;
+	    font-weight: 600;
+	    color: #FFF;
+	    z-index: 1;
+
+        img {
+            
+            padding: 5px 2px 5px 2px;
+            height: 100px;
+            width: 100px;
+        }
+    }
+
+    .col-inferior{
+    	display: flex;
+    	align-items: center;
+    	flex-direction: column;
+
+    	button[type=submit]{
+    		width: fit-content;
+    	}
+    }
+}
+
+.main-content.login-page .container .card .card-header {
+    padding: 0;
+}
+
+.main-content.login-page .container .card .card-body .form-login {
+    padding: 0px 30px 0px 30px;
+
+    .form-group user {
+        margin-bottom:0px;
+    }
+    .form-group pass {
+        margin-bottom:0px;
+    }
+}
+
+.login-remember {
+    padding-top: 5px;    
+}
+
+.login-submit {
+    padding-top: 20px;
+    text-align: center;
+
+    button {
+        width: 100%;
+    }
+
+    a {
+        font-size: 0.75rem;
+        text-transform: initial;
+        text-decoration: none;
+    }
+}
+
+.container-email{
+    .card {
+        min-width: 250px;
+    }
+}
+
+.container-register{
+    .card {
+        min-width: 350px;
+    }
+}
+
+
+.container-login .div-app-name, .container-register .div-app-name {
+    font-size: 23px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    color: #FFF;
+    z-index: 1;
+    text-align: center!important;
+}
+
+
+@media (min-width: 1200px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+
+        .card{
+            max-width: 350px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-content.login-page .container {
+        max-width: initial;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.row-login {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    width: 350px;
+ }
+
+ .btn-primary-iniciar-sesion {
+    color: #fff!important;
+    background-color: #0D47C2 !important; 
+    border-color: #0D47C2!important;
+}

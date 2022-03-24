@@ -1,0 +1,20 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/common.js": "/js/common.js",
+    "/js/users.js": "/js/users.js",
+    "/js/salas.js": "/js/salas.js",
+    "/js/eventos.js": "/js/eventos.js",
+    "/js/eventosAll.js": "/js/eventosAll.js",
+    "/js/eventosSala.js": "/js/eventosSala.js",
+    "/js/eventosTabla.js": "/js/eventosTabla.js",
+    "/css/app.css": "/css/app.css",
+    "/images/esei.jpg": "/images/esei.jpg",
+    "/images/LogoUvigo.jpg": "/images/LogoUvigo.jpg",
+    "/images/sort_asc.png": "/images/sort_asc.png",
+    "/images/sort_asc_disabled.png": "/images/sort_asc_disabled.png",
+    "/images/sort_both.png": "/images/sort_both.png",
+    "/images/sort_desc.png": "/images/sort_desc.png",
+    "/images/sort_desc_disabled.png": "/images/sort_desc_disabled.png",
+    "/images/universidadVigo.jpg": "/images/universidadVigo.jpg",
+    "/js/datatables/es.json": "/js/datatables/es.json"
+}
