@@ -60,7 +60,7 @@ class EventosController extends Controller
         $hoy = Carbon::today(); //Aquí se obtiene la fecha de hoy
 
         if($user->role_id == 1){
-            $dbData = \App\Models\Evento::whereDate('start', $hoy)->orderBy('start','ASC')->get(); 
+            $dbData = \App\Models\Evento::whereDate('start','>=', $hoy)->orderBy('start','ASC')->get(); 
             $data['recordsTotal'] = $dbData->count();
     		$data['recordsFiltered'] = $dbData->count();  
                           

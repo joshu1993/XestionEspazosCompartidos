@@ -40,7 +40,7 @@
             <div class="card-header">
                 <div class="row">    
                     <div class="col-md-11">
-                           <h3>Calendario {{ $sala->nombre }}</h3></li>
+                           <h3>Calendario {{ $sala->nombre }}</h3>
                        
                     </div>
                 </div>    

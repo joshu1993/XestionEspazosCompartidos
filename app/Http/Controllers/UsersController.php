@@ -36,35 +36,7 @@ class UsersController extends Controller
     	return view('users.index', compact('section','auth_user'));
         
     }
-/*
-    public function getTableData(Request $request) {
-        $data = array(
-            'draw' => 1,
-            'recordsTotal' => 0,
-            'recordsFiltered' => 0,
-            'data' => array()
-        );
-        
-    
-            $dbData = \App\Models\User::all(); 
-                $data['recordsTotal'] = $dbData->count();
-    		    $data['recordsFiltered'] = $dbData->count();  
-                          
-                 foreach ($dbData as $user) {
-                    array_push($data['data'], array(
-                        'DT_RowId' =>$user->id,
-                        'name' => $user->name,
-                        'nombreRol' => $user->role->nombreRol,
-                        'email' => $user->email,
-                        'created_at'=>$user->created_at,
-                                        
-                        'actions' => ''
-                     ));
-                }
-                
-        return Response::json($data); 
-    }
-  */
+
 
   public function getTableData($id_auth_user) {
     $data = array(
@@ -102,29 +74,7 @@ public function createUser(Request $request){
     return view('users.form', compact('section', 'roles', 'auth_user'));
 }
   
-  /*
-public function createNewUser(Request $request){
-       
-        
-        $data= request()->validate([
-                
-                'name' => 'required',
-                'role_id'=>'required',
-                'email' => 'required| unique:users',
-                'password' => 'required| min:6',
-                
-                ]);
-
-                $data['password']= Hash::make($data['password']);
-        
-                \App\Models\User::create($data);
-                        
-                
-        
-                return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
-    }
-
-    */
+ 
     public function createNewUser(Request $request){
 
       
@@ -169,29 +119,7 @@ public function createNewUser(Request $request){
         }
         return response()->json(['error'=>$validator->errors()]);
     }
-/*	
-    
-    public function show(User $user)
-    {
-        $auth_user = \App\Models\User::find($user)->last();
-        return response()->json($auth_user);
-        //return view('users.edit');
-    }
-    
 
-    public function show(User $user)
-    {
-        $auth_user = \App\Models\User::find($user)->last();
-
-        $json_usuario = json_decode($auth_user,true);
-        $comercialName = \App\Models\User::find($auth_user['comercialAsignado']);
-        $comercialName = json_decode($comercialName,true);
-        $json_usuario["comercialName"] = ((isset($comercialName['comercialAsignado']))&&($comercialName['comercialAsignado'] != '') ? (trim($comercialName['comercialAsignado'])) : '');
-
-        return response()->json($json_usuario);
-        //return view('users.edit');
-    }
-*/
     
     public function editUsuario(User $user) {
     	$section = 'users';
@@ -202,35 +130,6 @@ public function createNewUser(Request $request){
     	return view('users.form', compact('user', 'section', 'roles', 'auth_user'));
     }
  
-
-/*
-
-    public function updateUsuario(Request $request, User $id){
-       
-
-        $data= request()->validate([
-                
-                'name' => 'required',
-                'role_id'=>'required',
-                'email' => 'required|unique:users,email,'.$id->id,
-                'password' => 'min:6',
-                
-            ]);
-
-            //validamos si la contraseña es vacia
-
-            if(empty($request->password)){
-                $data['password'] = $id->password;
-            }else{
-                $data['password'] = Hash::make($data['password'] );
-            }
-        
-              $id->update($data);
-
-            
-    }
-
-    */
 
     public function updateUsuario(Request $request) {
     	$info = (null !== $request->input('data')) ? $request->input('data') : '';
@@ -269,12 +168,7 @@ public function createNewUser(Request $request){
     	}
     }
 
-    /*
-    public function eliminarUsuario(User $id){
-
-        $id->delete();
-    }
-    */
+    
 
     public function eliminarUsuario(Request $request) {
     	$id = (null !== $request->input('id')) ? $request->input('id') : '';

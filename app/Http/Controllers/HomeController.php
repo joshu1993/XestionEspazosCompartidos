@@ -17,7 +17,7 @@ use App\Models\Role;
 use App\Models\SalaRole;
 use App\Models\Evento;
 
-
+use Carbon\Carbon; 
 
 use App\Providers\RouteServiceProvider;
 
@@ -134,57 +134,11 @@ class HomeController extends Controller
             }
             
         }
-        
-
-        //return Response::json($data); 
+      
         return response()->json($data);
     }
 
-   /*
-    public function getEventos(Request $request){
-        
-        $data = [];
-        
-    
-            $dbData = \App\Models\Evento::all(); 
-              
-                          
-                 foreach ($dbData as $evento) {
-                        $dato=[];
-                        $dato['id'] =$evento->id;
-                        $dato['title'] = $evento->title;
-                        $dato['start'] = $evento->start;
-                        $dato['end'] = $evento->end;
-                        $dato['nombreUser']= $evento->user->name;
-                        $dato['nombreSala']= $evento->sala->nombre;
-
-                        $dato['color']= $evento->sala->color;
-
-                        $dato['descripcion']= $evento->descripcion;
-                        $data[]=$dato;
-                    
-                }
-                
-        //return Response::json($data); 
-        return response()->json($data);
-    }
-    */
-/*
-    public function validarFecha($horaInicio, $horaFin, $sala){
-        
-        $evento= \App\Models\Evento::select()
-
-                ->whereBetween('start',[$horaInicio,$horaFin])
-                ->orWhereBetween('end',[$horaInicio,$horaFin])
-                ->where('sala_id',$sala)
-                ->first();
-
-        //dd($evento) //mira lo que hace la consulta
-        
-        return $evento==null ?true :false;
-    }
-*/
-    
+   
     public function validarFecha($horaInicio, $horaFin, $sala){
         
         $evento= \App\Models\Evento::where('sala_id',$sala)->where(function($query)  use($horaInicio, $horaFin){
@@ -209,6 +163,7 @@ class HomeController extends Controller
         return $evento==null ?true :false;
     }
     */
+
    
     public function createNewEvento(Request $request){
        
@@ -222,6 +177,8 @@ class HomeController extends Controller
         //dd($email);
        $data = request()->all();
        $data['user_id'] = Auth::user()->id;
+
+       $hoy = Carbon::today();
         $datos= array(
                 
             'title' => 'required',
@@ -234,25 +191,32 @@ class HomeController extends Controller
         $validator = Validator::make($data, $datos);
        
         if ($validator->passes()) {
-            if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
-                \App\Models\Evento::create([
-                    'title' => $data['title'],
-                    'start' => $data['start'],
-                    'end' => $data['end'],
-                    'user_id' => $data['user_id'],
-                    'sala_id' => $data['sala_id'],
-                    'descripcion' => $data['descripcion'],
-                
-                    
-                ]);
-                $data['user_nombre'] = Auth::user()->name;
-                $data['sala_nombre'] = \App\Models\Sala::where('id',$data['sala_id'])->first()->nombre;
-                //dd($data);
-                Mail::to($email)->send(new XecMailable($data));
-                return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
-            }else{
-                return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
+            if($data["start"]<= $hoy){
+                return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
             }
+            else{
+                if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
+                    \App\Models\Evento::create([
+                        'title' => $data['title'],
+                        'start' => $data['start'],
+                        'end' => $data['end'],
+                        'user_id' => $data['user_id'],
+                        'sala_id' => $data['sala_id'],
+                        'descripcion' => $data['descripcion'],
+                    
+                        
+                    ]);
+                    $data['user_nombre'] = Auth::user()->name;
+                    $data['sala_nombre'] = \App\Models\Sala::where('id',$data['sala_id'])->first()->nombre;
+                    //dd($data);
+                    Mail::to($email)->send(new XecMailable($data));
+                    return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
+                }else{
+                    return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
+                }
+
+            }
+            
         }
         
         return response()->json(['error'=>$validator->errors()]);
@@ -260,7 +224,6 @@ class HomeController extends Controller
 
     public function showEvento($id) {
      
-
         $evento =  \App\Models\Evento::find($id);
         $json_evento = json_decode($evento,true); 
 
@@ -279,81 +242,9 @@ class HomeController extends Controller
        
                   
        return response()->json($json_evento); 
-
-      // return view('dashboard', compact('evento'));
-        
-    	
-       
+  
     }
-    /*
-    public function showEvento(Evento $id) {
-     
-        //$evento =  \App\Models\Evento::find($id)->last(); 
-
-        $evento =  \App\Models\Evento::find($id);
-        $json_evento = json_decode($evento,true); 
-        
-        $json_evento["nombreUser"]= $evento->user->name;
-        $json_evento["nombreSala"]= $evento->sala->nombre;
-        $id_auth_user = Auth::id();
-        $json_evento["auth_user"] = $id_auth_user;
-        $json_evento["correoUser"]=$evento->user->email;
-                  
-       return response()->json($json_evento); 
-
-      // return view('dashboard', compact('evento'));
-        
-    	
-       
-    }
-    */
-    
-/*
-    public function updateEvento(Request $request, $id){ 
-
-        $datosEvento=request()->except(['_token','_method']);
-        //print_r($datosEvento);
-        $evento=\App\Models\Evento::where('id','=',$id)->update($datosEvento);
-        //print_r("evento modificado");
-        
-        //print_r($evento);
-
-        return response()->json($evento);
-
-    }
-
-    public function eliminarEvento($id){
-
-        $eventos=\App\Models\Evento::findOrFail($id);
-        Evento::destroy($id);
-
-        return response()->json($id);
-
-    }
-
-    */
-    /*
-    public function updateEvento(Request $request){ 
-        
-        $data['user_id'] = Auth::user()->id;
-        $data= request()->validate([
-                
-            'title' => 'required',
-            'start'=>'required',
-            'end'=>'required',
-            
-            'sala_id' => 'required',
-            'descripcion' => 'nullable'
-            
-        ]);
-        
-        \App\Models\Evento::update($data);
-        return response()->json(['status'=> 'OK', 'message' => __('validation.messages.updateSuccess')]);
-
-    }
-*/
-    
-
+   
     public function updateEvento(Request $request){ 
 
         $data = (null !== $request->all()) ? $request->all() : '';
@@ -380,26 +271,34 @@ class HomeController extends Controller
              $data['user_id'] = Auth::user()->id;
 
 	        if ($validator->passes()) {
-                if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
-                    $evento = \App\Models\Evento::find($data['id']);
-                    $evento->title = $data['title'];
-                    $evento->start = $data['start'];
-                    $evento->end = $data['end'];
-                    $evento->user_id = $data['user_id'];
-                    $evento->sala_id = $data['sala_id'];
-                    $evento->descripcion = $data['descripcion'];
-                    $evento->save();
-
-                    $evento['user_nombre'] = Auth::user()->name;
-                    $evento['user_correo'] = Auth::user()->email;
-                    $data['sala_nombre'] = \App\Models\Sala::where('id',$evento['sala_id'])->first()->nombre;
-                    //dd($data);
-
-                    Mail::to($email)->send(new XecMailable($evento));
-                    return response()->json(['error' => array(), 'message' => __('validation.messages.updateSuccess')]);
-                }else{
-                    return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
+                if($data["start"]<= $hoy){
+                    return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
                 }
+                else{
+
+                    if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
+                        $evento = \App\Models\Evento::find($data['id']);
+                        $evento->title = $data['title'];
+                        $evento->start = $data['start'];
+                        $evento->end = $data['end'];
+                        $evento->user_id = $data['user_id'];
+                        $evento->sala_id = $data['sala_id'];
+                        $evento->descripcion = $data['descripcion'];
+                        $evento->save();
+    
+                        $evento['user_nombre'] = Auth::user()->name;
+                        $evento['user_correo'] = Auth::user()->email;
+                        $data['sala_nombre'] = \App\Models\Sala::where('id',$evento['sala_id'])->first()->nombre;
+                        //dd($data);
+    
+                        Mail::to($email)->send(new XecMailable($evento));
+                        return response()->json(['error' => array(), 'message' => __('validation.messages.updateSuccess')]);
+                    }else{
+                        return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
+                    }
+
+                }
+                
                     
 	        }
 	    	return response()->json(['error'=>$validator->errors()]);

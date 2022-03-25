@@ -17,7 +17,8 @@ Auth::routes();
 
 Route::get('/calendar', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('index');
 Route::get('/calendar/getAllEventos', [App\Http\Controllers\Auth\LoginController::class, 'getAllEventos'])->name('getAllEventos');
-
+Route::get('/calendar/{sala}', [App\Http\Controllers\Auth\LoginController::class, 'getAllCalendarioSala'])->name('allCalendarioSala');     
+Route::get('/calendar/getAllEventosSala/{sala}', [App\Http\Controllers\Auth\LoginController::class, 'getAllEventosSala'])->name('getAllEventosSala');
 
 
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout'); 

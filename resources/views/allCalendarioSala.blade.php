@@ -20,11 +20,11 @@
                             </a>
                                                 
                         </li>
-                        @foreach ($salas as $sala) 
-                        <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:{{$sala->color}}!important;">
+                        @foreach ($salas as $sal) 
+                        <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:{{$sal->color}}!important;">
                                 
-                            <a href="/calendar/{{ $sala->nombre }}" class= "sala-nombresala" style="color:#000!important;"  value="{{$sala->id}}" >
-                                {{ $sala->nombre }}
+                            <a href="/calendar/{{ $sal->nombre }}" class= "sala-nombresala" style="color:#000!important;"  value="{{$sal->id}}" >
+                                {{ $sal->nombre }}
                             </a>
                                 
                         </li>
@@ -39,8 +39,8 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-11">
-                       
-                            <h3>Calendario General</h3>
+                        <input type="hidden" id="nombreSala" name="nombreSala" value="{{ $sala->nombre }}">
+                        <h3>Calendario {{ $sala->nombre }}</h3>
                               
                     </div>      
                 </div>
@@ -48,7 +48,7 @@
 
             <div class="card-body">
     
-                <div id='calendarAll'></div>
+                <div id='calendarAllSala'></div>
                
             </div>
         </div>
@@ -67,5 +67,5 @@
 
        
     </script>
-    <script src="{{ asset('js/eventosAll.js?v=1.0.0') }}"></script>
+    <script src="{{ asset('js/eventosAllSala.js?v=1.0.0') }}"></script>
 @endsection

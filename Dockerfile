@@ -38,11 +38,12 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
  
 # Copiar el directorio existente a /var/www
-COPY . /var/www
+#COPY . /var/www
  
 # copiar los permisos del directorio de la aplicación
-COPY --chown=www:www . /var/www
-RUN chown -R www-data:www-data /var/www
+#COPY --chown=www:www . /var/www
+#RUN chown -R www-data:www-data /var/www
+RUN chown www-data:www-data /var/www
  
 # cambiar el usuario actual por www
 USER www

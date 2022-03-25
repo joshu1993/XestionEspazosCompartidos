@@ -190,7 +190,8 @@ return [
         'uploadSuccess' => 'Los ficheros se han subido con éxito!',
         'uploadFailed' => 'Los ficheros no se han subido!',
         'badFileFormat' => 'El formato del fichero no es .XLS ó .XLSX.',
-        'createFailed' => 'Hora y sala ya estan ocupadas'
+        'createFailed' => 'Hora y sala ya estan ocupadas',
+        'dayFailed' => 'ya no se puede reservar en esta fecha'
     ]
 
 ];

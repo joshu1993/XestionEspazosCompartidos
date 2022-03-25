@@ -80,6 +80,58 @@ class LoginController extends Controller
         //return Response::json($data); 
         return response()->json($data);
     }
+
+    public function getAllCalendarioSala($nombresala) {
+
+        //dd($nombresala);
+    
+        $sala = \App\Models\Sala::where('nombre',$nombresala)->first();
+        //$sala = \App\Models\Sala::find($nombresala);
+        //$sala = json_decode($sala,true);
+        //dd($sala);
+    
+       // dd($sala);
+        $section = 'calendar';
+       
+    
+            $salas=\App\Models\Sala::select('id','nombre','color')->orderBy('nombre')->get();
+        
+       
+        return view('allCalendarioSala', compact('sala', 'section','salas'));
+    }
+    
+
+    public function getAllEventosSala($sala) {
+        
+        $data = [];
+        
+            $sala_id=\App\Models\sala::where('nombre',$sala)->first(); 
+           // $sala_id=\App\Models\sala::find($sala); 
+           // console.log($sala_id);
+            $sal=$sala_id->id;
+           
+    
+            $dbEventos = \App\Models\Evento::where('sala_id',$sal)->get(); 
+                
+               
+                          
+                 foreach ($dbEventos as $evento) { 
+                        $dato=[];
+                        $dato['id'] =$evento->id;
+                            $dato['title'] = $evento->title;
+                            $dato['start'] = $evento->start;
+                            $dato['end'] = $evento->end;
+                            $dato['nombreUser']= $evento->user->name;
+                            $dato['nombreSala']= $evento->sala->nombre;
+                            $dato['color']= $evento->sala->color;
+                            $dato['descripcion']= $evento->descripcion;
+                            $data[]=$dato;
+                }
+                
+        //return Response::json($eventos); 
+     
+        return response()->json($data);
+    }
     
     public function customLogin(Request $request)
     {

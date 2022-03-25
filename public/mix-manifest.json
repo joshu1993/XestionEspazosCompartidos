@@ -5,6 +5,7 @@
     "/js/salas.js": "/js/salas.js",
     "/js/eventos.js": "/js/eventos.js",
     "/js/eventosAll.js": "/js/eventosAll.js",
+    "/js/eventosAllSala.js": "/js/eventosAllSala.js",
     "/js/eventosSala.js": "/js/eventosSala.js",
     "/js/eventosTabla.js": "/js/eventosTabla.js",
     "/css/app.css": "/css/app.css",

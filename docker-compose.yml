@@ -76,7 +76,9 @@ services:
     image: node:latest
     
     container_name: npm
-    
+
+    tty: true
+
     volumes:
       - ./:/var/www
    

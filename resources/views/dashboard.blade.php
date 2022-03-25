@@ -14,6 +14,13 @@
                 <div class="card-body">
                 <input type="hidden" id="idUser" name="idUser" value="{{ $auth_user['id'] ?? '' }}">  
                     <ul class="salas-nombre">
+                        <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:#FFF!important;">
+                                
+                            <a href="/calendario" class= "sala-nombresala" style="color:#000!important;" >
+                                General
+                            </a>
+                                                
+                        </li>
                         @foreach ($salas as $sala) 
                         <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:{{$sala->color}}!important;">
                                 

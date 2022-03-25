@@ -32,91 +32,6 @@ class SalasController extends Controller
     	return view('salas.index', compact('section','auth_user'));
     }
 
-/*
-    public function getTableData($id_auth_user) {
-        $data = array(
-            'draw' => 1,
-            'recordsTotal' => 0,
-            'recordsFiltered' => 0,
-            'data' => array()
-        );
-        $user = \App\Models\User::find($id_auth_user);
-
-        if($user->role_id == 1){
-            $dbData = \App\Models\Sala::all(); 
-            $data['recordsTotal'] = $dbData->count();
-    		$data['recordsFiltered'] = $dbData->count();  
-                          
-            foreach ($dbData as $sala) {
-                array_push($data['data'], array(
-                    'DT_RowId' =>$sala->id,
-                    'nombre' => $sala->nombre,
-                    'descripcion' => $sala->descripcion,
-                    'metrosCuadrados' => $sala->metrosCuadrados,
-                    'aforo'=> $sala->aforo,
-                    'proyector'=> $sala->proyector,
-                    'color'=> $sala->color,
-                    'created_at'=>$sala->created_at,
-                    'calendar' => '',             
-                    'actions' => ''
-                ));
-            }
-        }
-        if($user->role_id == 2){
-            $dbsalaRol = \App\Models\SalaRole::where('role_id', $user->role_id)->get();
-            foreach ($dbsalaRol as $salaRol) { 
-                $dbData = \App\Models\Sala::where('id', $salaRol->sala_id )->get(); 
-                $data['recordsTotal'] = $dbData->count();
-                $data['recordsFiltered'] = $dbData->count();  
-                            
-                foreach ($dbData as $sala) {
-                    array_push($data['data'], array(
-                        'DT_RowId' =>$sala->id,
-                        'nombre' => $sala->nombre,
-                        'descripcion' => $sala->descripcion,
-                        'metrosCuadrados' => $sala->metrosCuadrados,
-                        'aforo'=> $sala->aforo,
-                        'proyector'=> $sala->proyector,
-                        'color'=> $sala->color,
-                        'created_at'=>$sala->created_at,
-                        'calendar' => '',             
-                        'actions' => ''
-                    ));
-                }
-            }
-        }
-        if($user->role_id == 3){
-            $dbsalaRol = \App\Models\SalaRole::where('role_id', $user->role_id)->get(); 
-            foreach ($dbsalaRol as $salaRol) {
-                
-                
-                $dbData = \App\Models\Sala::where('id', $salaRol->sala_id )->get(); 
-                $data['recordsTotal'] = $dbData->count();
-                $data['recordsFiltered'] = $dbData->count();  
-                            
-                foreach ($dbData as $sala) {
-                    array_push($data['data'], array(
-                        'DT_RowId' =>$sala->id,
-                        'nombre' => $sala->nombre,
-                        'descripcion' => $sala->descripcion,
-                        'metrosCuadrados' => $sala->metrosCuadrados,
-                        'aforo'=> $sala->aforo,
-                        'proyector'=> $sala->proyector,
-                        'color'=> $sala->color,
-                        'created_at'=>$sala->created_at,
-                        'calendar' => '',             
-                        'actions' => ''
-                    ));
-                }
-            }
-        }
-              
-        return Response::json($data); 
-
-    }
-
-    */
-
     public function getTableData($id_auth_user) {
         $data = array(
             'draw' => 1,
@@ -183,11 +98,9 @@ class SalasController extends Controller
         $section = 'salas';
         $id_auth_user = Auth::id();
         $auth_user = \App\Models\User::find($id_auth_user);
-        //$roles=\App\Models\Role::;
-       // $roles=\App\Models\Role::all()->except('id', 1);
+        
         $roles=\App\Models\Role::where('id', 2)->orWhere('id',3)->get();
-        //console.log($roles);
-        //dd($roles);
+       
         
     	return view('salas.form', compact('section','auth_user','roles'));
     }
