@@ -1,5 +1,5 @@
 @extends('layouts.loginstile')
-
+@extends('errors.flash-message')
 @section('content')
 
 <div class="container-login">
@@ -25,11 +25,9 @@
                                 <label for="email" class="bmd-label-floating">{{ __('E-Mail ') }}</label>
                                 <input type="text" class="form-control" id="email" name="email" required autocomplete="email" autofocus>
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                                 
                             </div>
 
@@ -39,11 +37,9 @@
                                 
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
                                 
                             </div>
                             <!--
@@ -81,4 +77,7 @@
         
     </div>
 </div>
+@endsection
+@section('scripts')
+     <script src="{{ asset('js/common.js?v=1.0.0') }}"></script>
 @endsection

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Evento;
 use App\Models\Salas;
+use Validator;
+use Hash;
+use Session;
+use Illuminate\Support\Facades\Auth;
 
 
 class LoginController extends Controller
@@ -132,14 +136,36 @@ class LoginController extends Controller
      
         return response()->json($data);
     }
-    
+/*
     public function customLogin(Request $request)
     {
-        $this->validateLogin($request);
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+   
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('dashboard')
+                        ->with('success','Signed in');
+        }
+  
+        return redirect("login")->with('error','Email o contraseña son erroneos');
+    }
+    */
 
+    public function customLogin(Request $request)
+    {
+        $this->validateLogin($request, [
+            'email' => 'required|max:255|email',
+            'password' => 'required|confirmed',
+        ]);
+
+        
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
+        
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
@@ -159,6 +185,9 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }    
 
+    
+    
+
     protected function customAttemptLogin(Request $request)
     {
         return $this->guard()->attempt(
@@ -166,11 +195,16 @@ class LoginController extends Controller
         );
     }
 
+
     protected function customCredentials(Request $request)
     {
+        
         return $request->only(
             'email', 'password', 'password_confirmation', 'token', 'role_id'
         );
+        
+       
+        
 
     }    
     
@@ -180,12 +214,14 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+    
     protected function sendFailedLoginResponse(Request $request)
     {
-        $errors = [$this->username() => trans('auth.failed')];
+        //$errors = [$this->username() =>[trans('auth.failed')]] ;
        //$errors = [ 'message' => __('auth.failed')];
 
-
+        //dd($errors);
        
 
         // Load user from database
@@ -193,16 +229,32 @@ class LoginController extends Controller
 
         // Check if user was successfully loaded, that the password matches
         // and active is not 1. If so, override the default error message.
+        /*
         if ($user && \Hash::check($request->password, $user->password) && $user->active != 1) {
-            $errors = [$this->username(), 'message' => __('auth.notactivated')];
+            $errors = [$this->username() =>[trans('auth.notactivated')]];
+        }
+        */
+        
+        if ($user && \Hash::check($request->password, $user->password) && $user->active != 1) {
+            return redirect('login')->with('error','Email no esta registrado');
         }
 
+        /*
         if ($request->expectsJson()) {
             return response()->json($errors, 422);
             //return response()->json(['error'=> array(), 'message' => __('auth.failed')]);
         }
+        */
+        /*
         return redirect()->back()
             ->withInput($request->only($this->username(), 'remember'))
             ->withErrors($errors);
-    }        
+        */
+        return redirect('login')->with('error','Email o contraseña son erroneos');
+       // return redirect('login').showNotify('danger', 'Email o contraseña son erroneos');
+        
+        //appMethods.showNotify('danger', response.data.message);
+           
+    }
+
 }

@@ -178,7 +178,8 @@ class HomeController extends Controller
        $data = request()->all();
        $data['user_id'] = Auth::user()->id;
 
-       $hoy = Carbon::today();
+       //$hoy = Carbon::today();
+       $mañana= new Carbon('tomorrow'); 
         $datos= array(
                 
             'title' => 'required',
@@ -191,7 +192,7 @@ class HomeController extends Controller
         $validator = Validator::make($data, $datos);
        
         if ($validator->passes()) {
-            if($data["start"]<= $hoy){
+            if($data["start"]< $mañana){
                 return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
             }
             else{
@@ -249,7 +250,8 @@ class HomeController extends Controller
 
         $data = (null !== $request->all()) ? $request->all() : '';
         //dd($info);
-
+        //$hoy = Carbon::today();
+        $mañana= new Carbon('tomorrow'); 
          
     	if ($data != '') {
     		//parse_str($info, $data);
@@ -271,7 +273,7 @@ class HomeController extends Controller
              $data['user_id'] = Auth::user()->id;
 
 	        if ($validator->passes()) {
-                if($data["start"]<= $hoy){
+                if($data["start"]< $mañana){
                     return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
                 }
                 else{
