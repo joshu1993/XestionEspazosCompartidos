@@ -295,6 +295,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         $(element).html('');
                         $(element).hide();
                     });
+
+                    $.each(response.error, function (key, element) {
+                        for(var i = 0; i < element.length; i++) {
+                            if ((element[i].toUpperCase().indexOf('CONFIRMACIÓN') != -1) || (element[i].toUpperCase().indexOf('CONFIRMACION') != -1)) {
+                                $(('#invalid-feedback-' + key + '_confirmation')).html(element[i]);
+                                $(('#invalid-feedback-' + key + '_confirmation')).show();
+                                element.splice(i, 1);
+                            }
+                            break;
+                        }
+        
+                        $(('#invalid-feedback-' + key)).html(element.join('<br>'));
+                        $(('#invalid-feedback-' + key)).show();
+                    });
                       
                     appMethods.showNotify('danger', response.message);
                    // $('#exampleModal').modal('toggle');

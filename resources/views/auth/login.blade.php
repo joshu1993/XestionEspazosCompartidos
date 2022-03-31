@@ -1,5 +1,5 @@
 @extends('layouts.loginstile')
-@extends('errors.flash-message')
+
 @section('content')
 
 <div class="container-login">
@@ -20,7 +20,7 @@
                         
                         <form  class="form-login" method="POST" action="{{ route('login') }}">
                             @csrf
-
+                            @extends('errors.flash-message')
                             <div class="form-group user">
                                 <label for="email" class="bmd-label-floating">{{ __('E-Mail ') }}</label>
                                 <input type="text" class="form-control" id="email" name="email" required autocomplete="email" autofocus>

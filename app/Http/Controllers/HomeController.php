@@ -146,9 +146,11 @@ class HomeController extends Controller
                             ->orWhereBetween('end',[$horaInicio,$horaFin]);
                 })->first();
 
-        //dd($evento) //mira lo que hace la consulta
+         //mira lo que hace la consulta
+        // dd($evento);
         
         return $evento==null ?true :false;
+        
     }
     /*
     public function validarUser($horaInicio, $horaFin, $user){
@@ -183,20 +185,22 @@ class HomeController extends Controller
         $datos= array(
                 
             'title' => 'required',
-            'start'=>'required|before_or_equal:end',
-            'end'=>'required',
+            'start'=>'required | date_format:Y-m-d H:i|before:end',
+            'end'=>'required | date_format:Y-m-d H:i',
             'sala_id' => 'required',
             'descripcion' => 'nullable'
         );
        
         $validator = Validator::make($data, $datos);
+
+       
        
         if ($validator->passes()) {
-            if($data["start"]< $mañana){
-                return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
-            }
-            else{
+            if($data["start"]> $mañana){
+
                 if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
+
+                    
                     \App\Models\Evento::create([
                         'title' => $data['title'],
                         'start' => $data['start'],
@@ -209,20 +213,29 @@ class HomeController extends Controller
                     ]);
                     $data['user_nombre'] = Auth::user()->name;
                     $data['sala_nombre'] = \App\Models\Sala::where('id',$data['sala_id'])->first()->nombre;
-                    //dd($data);
+                   
                     Mail::to($email)->send(new XecMailable($data));
                     return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
                 }else{
                     return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
                 }
+                    
+            }
+            else{
+
+                return response()->json(['error' => array([2]),'message' => __('validation.messages.dayFailed')]);
 
             }
-            
+           
+                
+  
         }
+       
         
         return response()->json(['error'=>$validator->errors()]);
     }
 
+   
     public function showEvento($id) {
      
         $evento =  \App\Models\Evento::find($id);
@@ -246,6 +259,7 @@ class HomeController extends Controller
   
     }
    
+    
     public function updateEvento(Request $request){ 
 
         $data = (null !== $request->all()) ? $request->all() : '';
@@ -261,8 +275,8 @@ class HomeController extends Controller
 
     		$validateOptions = array(
                 'title' => 'required',
-                'start'=>'required',
-                'end'=>'required',
+                'start'=>'required | date_format:Y-m-d H:i|before:end',
+                'end'=>'required | date_format:Y-m-d H:i',
                // 'user_id' => 'required',
                //'sala_id' => 'required',
                 'descripcion' => 'nullable'
@@ -273,11 +287,7 @@ class HomeController extends Controller
              $data['user_id'] = Auth::user()->id;
 
 	        if ($validator->passes()) {
-                if($data["start"]< $mañana){
-                    return response()->json(['error' => array([1]),'message' => __('validation.messages.dayFailed')]);
-                }
-                else{
-
+                if($data["start"]> $mañana){
                     if($this->validarFecha($data["start"],$data["end"],$data["sala_id"])){
                         $evento = \App\Models\Evento::find($data['id']);
                         $evento->title = $data['title'];
@@ -299,6 +309,11 @@ class HomeController extends Controller
                         return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
                     }
 
+                   
+                }
+                else{
+
+                    return response()->json(['error' => array([2]),'message' => __('validation.messages.dayFailed')]);
                 }
                 
                     

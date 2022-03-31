@@ -21,19 +21,22 @@ return [
     'alpha_dash'           => 'El campo :attribute sólo puede contener letras, números y guiones (a-z, 0-9, -_).',
     'alpha_num'            => 'El campo :attribute sólo puede contener letras y números.',
     'array'                => 'El campo :attribute debe ser un array.',
-    'before'               => 'El campo :attribute debe ser una fecha anterior a :date.',
+    //'before'               => 'El campo :attribute debe ser una fecha anterior a :date.',
+    'before'               => 'El campo :attribute debe ser una hora anterio a :date.',
     'before_or_equal'      => 'El campo :attribute debe ser una fecha anterior o igual a :date.',
     'between'              => [
         'numeric' => 'El campo :attribute debe ser un valor entre :min y :max.',
         'file'    => 'El archivo :attribute debe pesar entre :min y :max kilobytes.',
         'string'  => 'El campo :attribute debe contener entre :min y :max caracteres.',
         'array'   => 'El campo :attribute debe contener entre :min y :max elementos.',
+        'date'    => 'El campo :attribute debe estar entre :min y :max .',
     ],
     'boolean'              => 'El campo :attribute debe ser verdadero o falso.',
     'confirmed'            => 'El campo Confirmación de :attribute no coincide.',
     'date'                 => 'El campo :attribute no corresponde con una fecha válida.',
     'date_equals'          => 'El campo :attribute debe ser igual a :date.',
-    'date_format'          => 'El campo :attribute no corresponde con el formato de fecha :format.',
+    //'date_format'          => 'El campo :attribute no corresponde con el formato de fecha :format.',
+    'date_format'          => 'El campo :attribute no puede estar vacío',
     'different'            => 'Los campos :attribute y :other han de ser diferentes.',
     'digits'               => 'El campo :attribute debe ser un número de :digits dígitos.',
     'digits_between'       => 'El campo :attribute debe contener entre :min y :max dígitos.',
@@ -81,6 +84,8 @@ return [
         'file'    => 'El archivo :attribute debe pesar :max kilobytes como máximo.',
         'string'  => ':attribute debe contener :max caracteres como máximo.',
         'array'   => ':attribute debe contener :max elementos como máximo.',
+
+        'date_format'=> ' :attribute debe ser anterior a :max',
     ],
     'mimes'                => 'El campo :attribute debe ser un archivo de tipo :values.',
     'mimetypes'            => 'El campo :attribute debe ser un archivo de tipo :values.',
@@ -89,6 +94,8 @@ return [
         'file'    => ':attribute debe pesar al menos :min kilobytes.',
         'string'  => ':attribute debe contener al menos :min caracteres.',
         'array'   => ':attribute debe contener al menos :min elementos.',
+
+        'date_format'=> ' :attribute debe ser posterior a :min',
     ],
     'not_in'               => 'El campo :attribute seleccionado es inválido.',
     'not_regex' => 'The :attribute format is invalid.',
@@ -177,6 +184,12 @@ return [
         'correo' => 'Email',
         'nuevo' => 'Nuevo',
         'image'=>'Imagen',
+        'title'=>'Título',
+        'titulo'=>'Título',
+        'sala_id'=>'Sala',
+        'end'=> 'Hora Fin',
+        'start'=> 'Hora Inicio',
+       
         
        
     ],
@@ -191,7 +204,8 @@ return [
         'uploadFailed' => 'Los ficheros no se han subido!',
         'badFileFormat' => 'El formato del fichero no es .XLS ó .XLSX.',
         'createFailed' => 'Hora y sala ya estan ocupadas',
-        'dayFailed' => 'ya no se puede reservar en esta fecha'
+        'dayFailed' => 'ya no se puede reservar en esta fecha',
+        'hoursFailed' => 'el horario de reserva es de 08:30 a 22:30'
     ]
 
 ];

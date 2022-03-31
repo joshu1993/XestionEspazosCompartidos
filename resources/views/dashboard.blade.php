@@ -77,22 +77,84 @@
 
                                         <div class="form-group col-md-12">
                                             <label for="titulo" class="bmd-label-floating">Titulo</label>
-                                            <input type="text" name="titulo" id="titulo" class="form-control" required>
-                                            <span id="invalid-feedback-titulo" class="invalid-feedback"></span>
+                                            <input type="text" name="titulo" id="titulo" class="form-control" >
+                                            <span id="invalid-feedback-title" class="invalid-feedback"></span>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="fecha" class="bmd-label-floating">Fecha</label>
                                             <input type="date" name="fecha" id="fecha" class="form-control" readonly>
                                         </div>
                                         
-                                        <div class="form-group col-md-4"> 
+                                        <div class="form-group col-md-4 "> 
                                             <label for="horaInicio" class="bmd-label-floating">Hora Inicio</label>
-                                            <input type="time" min="08:30" max="23:00" name="horaInicio" id="horaInicio" class="form-control" required>
+                                            <select class="form-control" name="horaInicio" id="horaInicio">
+                                                <option value="08:30">08:30 h.</option>
+                                                <option value="09:00">09:00 h.</option>
+                                                <option value="09:30">09:30 h.</option>
+                                                <option value="10:00">10:00 h.</option>
+                                                <option value="10:30">10:30 h.</option>
+                                                <option value="11:00">11:00 h.</option>
+                                                <option value="11:30">11:30 h.</option>
+                                                <option value="12:00">12:00 h.</option>
+                                                <option value="12:30">12:30 h.</option>
+                                                <option value="13:00">13:00 h.</option>
+                                                <option value="13:30">13:30 h.</option>
+                                                <option value="14:00">14:00 h.</option>
+                                                <option value="14:30">14:30 h.</option>
+                                                <option value="15:00">15:00 h.</option>
+                                                <option value="15:30">15:30 h.</option>
+                                                <option value="16:00">16:00 h.</option>
+                                                <option value="16:30">16:30 h.</option>
+                                                <option value="17:00">17:00 h.</option>
+                                                <option value="17:30">17:30 h.</option>
+                                                <option value="18:00">18:00 h.</option>
+                                                <option value="18:30">18:30 h.</option>
+                                                <option value="19:00">19:00 h.</option>
+                                                <option value="19:30">19:30 h.</option>
+                                                <option value="20:00">20:00 h.</option>
+                                                <option value="20:30">20:30 h.</option>
+                                                <option value="21:00">21:00 h.</option>
+                                                <option value="21:30">21:30 h.</option>
+                                                
+                                            </select>
+                                            <span id="invalid-feedback-start" class="invalid-feedback"></span>
                                         </div>
-                                        <div class="form-group col-md-4"> 
+                                        
+                                        <div class="form-group col-md-4 "> 
                                             <label for="horaFin" class="bmd-label-floating">Hora Fin</label>
-                                            <input type="time" min="08:30" max="23:00" name="horaFin" id="horaFin" class="form-control" required>
+                                            <select class="form-control" name="horaFin" id="horaFin">
+                                                <option value="08:30">08:30 h.</option>
+                                                <option value="09:00">09:00 h.</option>
+                                                <option value="09:30">09:30 h.</option>
+                                                <option value="10:00">10:00 h.</option>
+                                                <option value="10:30">10:30 h.</option>
+                                                <option value="11:00">11:00 h.</option>
+                                                <option value="11:30">11:30 h.</option>
+                                                <option value="12:00">12:00 h.</option>
+                                                <option value="12:30">12:30 h.</option>
+                                                <option value="13:00">13:00 h.</option>
+                                                <option value="13:30">13:30 h.</option>
+                                                <option value="14:00">14:00 h.</option>
+                                                <option value="14:30">14:30 h.</option>
+                                                <option value="15:00">15:00 h.</option>
+                                                <option value="15:30">15:30 h.</option>
+                                                <option value="16:00">16:00 h.</option>
+                                                <option value="16:30">16:30 h.</option>
+                                                <option value="17:00">17:00 h.</option>
+                                                <option value="17:30">17:30 h.</option>
+                                                <option value="18:00">18:00 h.</option>
+                                                <option value="18:30">18:30 h.</option>
+                                                <option value="19:00">19:00 h.</option>
+                                                <option value="19:30">19:30 h.</option>
+                                                <option value="20:00">20:00 h.</option>
+                                                <option value="20:30">20:30 h.</option>
+                                                <option value="21:00">21:00 h.</option>
+                                                <option value="21:30">21:30 h.</option>
+                                               
+                                            </select>
+                                            <span id="invalid-feedback-end" class="invalid-feedback"></span>
                                         </div>
+                                       
                                         <div id="nombre_usuario" class="form-group col-md-8  ">
                                             <label for="user_id" name="user_id" class="bmd-label-floating">Responsable</label>
                                             <!--
@@ -102,7 +164,8 @@
     -->
                                             <input type="hidden" name="user_id" id="user_id" class="form-control" >
                                             <input type="text" name="user_name" id="user_name" class="form-control"  readonly>
-                                        <!-- @endif-->
+                                            
+                                            <!-- @endif-->
                                         </div>
                                     
                                         <div class="form-group col-md-4 customSelect ">
@@ -122,8 +185,10 @@
                                             
                                         <!-- @endif-->
 
-                                        <input type="hidden" name="sala_id" id="sala_id" class="form-control" value=""  > 
+                                        <input type="hidden" name="sala_id" id="sala_id" class="form-control" value=""  >
+                                        
                                         </div>
+                                        <span id="invalid-feedback-sala_id" class="invalid-feedback"></span> 
                                         <div id="correo_usuario" class="form-group col-md-12">
                                             <label for="correo" class="bmd-label-floating">Correo </label>
                                             <input type="text" name="user_correo" id="user_correo" class="form-control"  readonly>
