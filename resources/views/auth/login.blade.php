@@ -20,7 +20,7 @@
                         
                         <form  class="form-login" method="POST" action="{{ route('login') }}">
                             @csrf
-                            @extends('errors.flash-message')
+                            
                             <div class="form-group user">
                                 <label for="email" class="bmd-label-floating">{{ __('E-Mail ') }}</label>
                                 <input type="text" class="form-control" id="email" name="email" required autocomplete="email" autofocus>
@@ -70,7 +70,14 @@
             
                                 
                             </div>
+                           
                         </form>
+                        @if ($message = Session::get('error'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>    
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                        @endif
                     </div>
                 </div>
             </div>

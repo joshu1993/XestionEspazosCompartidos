@@ -38,13 +38,13 @@
                         </div>
                      
                         <div class="login-submit">
-                                <button type="submit" class="btn btn-primary btn-raised">
+                                <button type="submit" class="btn btn-primary-iniciar-sesion btn-raised">
                                     {{ __('Recuperar') }}
                                 </button>
                         </div>
                         <div class="login-submit">
                                 <a class="btn btn-link" href="{{ route('login') }}">
-                                    {{ __('volver al login') }}
+                                    {{ __('volver al Login') }}
                                 </a>
                         </div>
                     </form>
