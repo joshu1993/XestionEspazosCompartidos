@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initialView: 'dayGridMonth',
             selectable: true,
             locale: 'es',
+            weekends: false,//fin de semana ocultos
         
             customButtons: {
                 myCustomButton: {

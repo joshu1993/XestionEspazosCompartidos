@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initialView: 'dayGridMonth',
         selectable: true,
         locale: 'es',
+        weekends: false,
     
         customButtons: {
             myCustomButton: {
@@ -32,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         dateClick:function(info){
-
+           
             limpiarFormulario();
-            
+
             $('#fecha').val(info.dateStr);
             $('#fecha').prop('readonly',true);
             $('#titulo').prop('readonly',false);
