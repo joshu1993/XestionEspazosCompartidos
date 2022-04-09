@@ -25,10 +25,10 @@
                                         <tr>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Fin</th>
-                                            <th>Nombre Usuario</th>
+                                            <th>Sala</th> 
                                             <th>DNI Usuario</th>
-                                            <th>Correo Usuario</th>
-                                            <th>Sala</th>   
+                                            <th>Nombre Usuario</th>
+                                            <th>Correo Usuario</th>     
                                         </tr>
                                     </thead>
                                 </table>

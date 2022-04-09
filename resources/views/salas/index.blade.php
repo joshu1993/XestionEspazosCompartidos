@@ -30,12 +30,10 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre Sala</th>
-                                            <th> M²</th>
                                             <th>Aforo</th>
                                             <th>Proyector</th>
                                             <th>Color</th>
-                                            <th>Calendario<th>
-                                        
+                                            <th>Calendario</th>
                                             <th></th>
                                             
                                         </tr>
@@ -46,11 +44,10 @@
                                         <thead>
                                             <tr>
                                                 <th>Nombre Sala</th>
-                                                <th> M²</th>
                                                 <th>Aforo</th>
                                                 <th>Proyector</th>
                                                 <th>Color</th>
-                                                <th>Calendario<th>
+                                                <th>Calendario</th>
                                             </tr>
                                         </thead>
                                     </table>

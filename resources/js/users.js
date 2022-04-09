@@ -14,6 +14,7 @@ $(function(){
     usersDatatable = $('#usersTable').DataTable({
         stateSave: true,
         dom: 'frtip',
+        responsive: true,
         order: [[ 0, 'asc' ], [ 1, 'asc' ]],
         bLengthChange: false,
         pageLength: 20,
@@ -47,7 +48,7 @@ $(function(){
                 columnDefs: [
                     {
                 targets: 4,
-                className: 'dt-actions-center'
+                className: 'dt-actions'
             }
         ],
         columns: [

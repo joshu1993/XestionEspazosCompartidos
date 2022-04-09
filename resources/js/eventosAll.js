@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initialView: 'dayGridMonth',
         selectable: true,
         locale: 'es',
-    
+        weekends: false,
         headerToolbar: {
             left:'prev next today',
             center:'title',

@@ -16,7 +16,7 @@
 
                 @include('layouts.topbar')
                 
-                
+                @include('layouts.rightmenu')
                
 
             @show

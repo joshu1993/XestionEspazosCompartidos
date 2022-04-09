@@ -3,7 +3,7 @@
         <div class="container-fluid">        
           
             <div class="nombre-proyecto">   
-                <h6 class="Xestion-espazos-compartidos-login">Xestion Espazos Compartidos</h6>
+                <h5 class="Xestion-espazos-compartidos-login">Xestion Espazos Compartidos</h5>
             </div>
        
             

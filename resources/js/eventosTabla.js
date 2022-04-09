@@ -10,6 +10,7 @@ $(function(){
         order: [[ 0, 'asc' ], [ 1, 'asc' ]],
         bLengthChange: false,
         pageLength: 20,
+        responsive: true,
         language: {
             //url: "/js/datatables/es.json",
             decimal: "",
@@ -38,6 +39,14 @@ $(function(){
             url: eventosUrl,
             type: "GET"
         },
+        columnDefs: [
+            {
+               
+                className: "dt-body-left",
+                className: "dt-body-right"
+            }
+           
+        ],
         /*
         columnDefs: [
             {
@@ -51,10 +60,11 @@ $(function(){
             
             { data: "start"},
             { data: "end" },
-            { data: "userName"},
-            { data: "userDni"},
-            { data: "userEmail" },
             { data: "salaNombre"},
+            { data: "userDni"},
+            { data: "userName"},
+            { data: "userEmail" },
+            
            
         ]
         
@@ -96,6 +106,14 @@ $(function(){
             url: eventosUrl,
             type: "GET"
         },
+        columnDefs: [
+            {
+                
+                className: "dt-body-left",
+                className: "dt-body-right"
+            }
+           
+        ],
         /*
         columnDefs: [
             {

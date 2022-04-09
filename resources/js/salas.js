@@ -12,6 +12,7 @@ $(function(){
         order: [[ 0, 'asc' ]],
         bLengthChange: false,
         pageLength: 20,
+        responsive: true,
         language: {
             //url: "/js/datatables/es.json",
 
@@ -42,51 +43,33 @@ $(function(){
         },
         columnDefs: [
             {
-                targets: 6,
-                className: "dt-body-left",
-                className: "dt-body-right"
-            },
-            {
-                targets: [7],
-                visible: false
-
-            } 
+                targets: 5,
+                className: 'dt-actions'
+            }
+           
         ],
         columns: [
             { 
                 data: "nombre",
                 render: setEditSalaButton
             },
-            { data: "metrosCuadrados" },
             { data: "aforo" },
             { data: "proyector" },
             { 
                 data: "color",
                 render: setColorButtons 
             },
-            /*
             { 
                 data:"calendar",
                 render: setCalendarButton
+                
             },
-            */
             { 
-                data:"calendar",
-                render: setCalendarButton
-                //render: setCalendarButton
-            },
-           
-            { 
-               
                 data:"actions",
-               
                 render: setActionButtons
-              
-               
-                //render: setCalendarButton
-            },
-           
-            { data: "descripcion" }
+             
+            }
+
             
         ],
         
@@ -110,6 +93,7 @@ $(function(){
         order: [[ 0, 'asc' ]],
         bLengthChange: false,
         pageLength: 20,
+        responsive: true,
         language: {
             //url: "/js/datatables/es.json",
             decimal: "",
@@ -139,22 +123,22 @@ $(function(){
         },
         columnDefs: [
             {
-                targets: 5,
+                
                 className: "dt-body-left",
                 className: "dt-body-right"
             },
             {
-                targets: [6],
-                visible: false
-
-            } 
+                "targets": [5],
+                "visible": false
+            }
+            
         ],
         columns: [
             { 
                 data: "nombre",
                 render: setEditSalaButton
             },
-            { data: "metrosCuadrados" },
+           
             { data: "aforo" },
             { data: "proyector" },
             { 
@@ -172,11 +156,8 @@ $(function(){
                 render: setCalendarButton
                 //render: setCalendarButton
             },
-           
-           
-           
             { data: "descripcion" }
-            
+           
         ],
       
         
