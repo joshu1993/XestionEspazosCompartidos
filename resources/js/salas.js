@@ -209,7 +209,7 @@ function setColorButtons(data, type, row) {
 }
 
 function setActionButtons(data, type, row) {
-    if( $('#idUser').val()==1){
+    if( $('#roleUser').val()==1){
     return '<a href="#" id="btnConfirmDelete_' + row.DT_RowId + '" data-id="' + row.DT_RowId + '"><i class="material-icons">delete</i></a>';
     }
 }

@@ -22,6 +22,7 @@
 
             <div class="card-body">
                 <input type="hidden"  id="idUser" name="idUser" value="{{ Auth::user()->id ?? '' }}"> 
+                <input type="hidden"  id="roleUser" name="roleUser" value="{{ Auth::user()->role_id ?? '' }}"> 
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-lg-12">
                         <div class="table-responsive no-scroll">

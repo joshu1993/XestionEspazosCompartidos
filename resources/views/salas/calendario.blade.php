@@ -10,7 +10,7 @@
                                 
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body-salas">
                 <input type="hidden" id="idUser" name="idUser" value="{{ $auth_user['id'] ?? '' }}">  
                 <ul class="salas-nombre">
                     <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:#FFF!important;">
@@ -77,8 +77,8 @@
                                         <label for="titulo" class="bmd-label-floating">Titulo</label>
                                         <input type="text" name="titulo" id="titulo" class="form-control">
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="fecha" class="bmd-label-floating">Fecha</label>
+                                    <div class="form-group col-md-4 fecha">
+                                        <label for="fecha" class="bmd-label-floating fecha">Fecha</label>
                                         <input type="date" name="fecha" id="fecha" class="form-control" readonly>
                                     </div>
                                     

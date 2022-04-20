@@ -10,7 +10,7 @@
                                 
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body-salas">
                  
                     <ul class="salas-nombre">
                         <li style="padding-left: 10px;line-height:25px;margin-left: -15px; border: 1px solid rgba(0, 0, 0, 0.12);border-radius: 0.125rem;padding-right: 10px; padding-top: 3px;color:#000!important;background-color:#FFF!important;">

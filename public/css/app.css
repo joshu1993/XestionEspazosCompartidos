@@ -15109,16 +15109,16 @@ a:hover {
 
 .btn.bmd-btn-fab.btn-primary:hover, .bmd-btn-fab.btn-primary.custom-file-control:hover::before, .btn.btn-raised.btn-primary:hover, .btn-raised.btn-primary.custom-file-control:hover::before, .btn-group-raised .btn.btn-primary:hover, .btn-group-raised .btn-primary.custom-file-control:hover::before {
   color: #fff;
-  background-color: #0D81C2 -focus;
-  border-color: #0D81C2 -borde-claro;
+  background-color: #0D81C2;
+  border-color: #0D81C2;
   height: 34px;
   border-radius: 50%;
 }
 
 .btn.bmd-btn-fab.btn-primary:active:hover, .bmd-btn-fab.btn-primary.custom-file-control:active:hover::before, .btn.bmd-btn-fab.btn-primary:active:focus, .bmd-btn-fab.btn-primary.custom-file-control:active:focus::before, .btn.bmd-btn-fab.btn-primary:active.focus, .bmd-btn-fab.btn-primary.custom-file-control:active.focus::before, .btn.bmd-btn-fab.btn-primary.active:hover, .bmd-btn-fab.btn-primary.active.custom-file-control:hover::before, .btn.bmd-btn-fab.btn-primary.active:focus, .bmd-btn-fab.btn-primary.active.custom-file-control:focus::before, .btn.bmd-btn-fab.btn-primary.active.focus, .bmd-btn-fab.btn-primary.active.focus.custom-file-control::before, .open > .btn.bmd-btn-fab.btn-primary.dropdown-toggle:hover, .open > .bmd-btn-fab.btn-primary.dropdown-toggle.custom-file-control:hover::before, .open > .btn.bmd-btn-fab.btn-primary.dropdown-toggle:focus, .open > .bmd-btn-fab.btn-primary.dropdown-toggle.custom-file-control:focus::before, .open > .btn.bmd-btn-fab.btn-primary.dropdown-toggle.focus, .open > .bmd-btn-fab.btn-primary.dropdown-toggle.focus.custom-file-control::before, .btn.btn-raised.btn-primary:active:hover, .btn-raised.btn-primary.custom-file-control:active:hover::before, .btn.btn-raised.btn-primary:active:focus, .btn-raised.btn-primary.custom-file-control:active:focus::before, .btn.btn-raised.btn-primary:active.focus, .btn-raised.btn-primary.custom-file-control:active.focus::before, .btn.btn-raised.btn-primary.active:hover, .btn-raised.btn-primary.active.custom-file-control:hover::before, .btn.btn-raised.btn-primary.active:focus, .btn-raised.btn-primary.active.custom-file-control:focus::before, .btn.btn-raised.btn-primary.active.focus, .btn-raised.btn-primary.active.focus.custom-file-control::before, .open > .btn.btn-raised.btn-primary.dropdown-toggle:hover, .open > .btn-raised.btn-primary.dropdown-toggle.custom-file-control:hover::before, .open > .btn.btn-raised.btn-primary.dropdown-toggle:focus, .open > .btn-raised.btn-primary.dropdown-toggle.custom-file-control:focus::before, .open > .btn.btn-raised.btn-primary.dropdown-toggle.focus, .open > .btn-raised.btn-primary.dropdown-toggle.focus.custom-file-control::before, .btn-group-raised .btn.btn-primary:active:hover, .btn-group-raised .btn-primary.custom-file-control:active:hover::before, .btn-group-raised .btn.btn-primary:active:focus, .btn-group-raised .btn-primary.custom-file-control:active:focus::before, .btn-group-raised .btn.btn-primary:active.focus, .btn-group-raised .btn-primary.custom-file-control:active.focus::before, .btn-group-raised .btn.btn-primary.active:hover, .btn-group-raised .btn-primary.active.custom-file-control:hover::before, .btn-group-raised .btn.btn-primary.active:focus, .btn-group-raised .btn-primary.active.custom-file-control:focus::before, .btn-group-raised .btn.btn-primary.active.focus, .btn-group-raised .btn-primary.active.focus.custom-file-control::before, .open > .btn-group-raised .btn.btn-primary.dropdown-toggle:hover, .open > .btn-group-raised .btn-primary.dropdown-toggle.custom-file-control:hover::before, .open > .btn-group-raised .btn.btn-primary.dropdown-toggle:focus, .open > .btn-group-raised .btn-primary.dropdown-toggle.custom-file-control:focus::before, .open > .btn-group-raised .btn.btn-primary.dropdown-toggle.focus, .open > .btn-group-raised .btn-primary.dropdown-toggle.focus.custom-file-control::before {
   color: #fff;
-  background-color: #0D81C2 -focus;
-  border-color: #0D81C2 -borde-oscuro;
+  background-color: #0D81C2;
+  border-color: #0D81C2;
   height: 34px;
   border-radius: 50%;
 }
@@ -15129,19 +15129,19 @@ a:hover {
 
 .btn.bmd-btn-fab.btn-primary:active, .bmd-btn-fab.btn-primary.custom-file-control:active::before, .btn.bmd-btn-fab.btn-primary.active, .bmd-btn-fab.btn-primary.active.custom-file-control::before, .open > .btn.bmd-btn-fab.btn-primary.dropdown-toggle, .open > .bmd-btn-fab.btn-primary.dropdown-toggle.custom-file-control::before, .btn.btn-raised.btn-primary:active, .btn-raised.btn-primary.custom-file-control:active::before, .btn.btn-raised.btn-primary.active, .btn-raised.btn-primary.active.custom-file-control::before, .open > .btn.btn-raised.btn-primary.dropdown-toggle, .open > .btn-raised.btn-primary.dropdown-toggle.custom-file-control::before, .btn-group-raised .btn.btn-primary:active, .btn-group-raised .btn-primary.custom-file-control:active::before, .btn-group-raised .btn.btn-primary.active, .btn-group-raised .btn-primary.active.custom-file-control::before, .open > .btn-group-raised .btn.btn-primary.dropdown-toggle, .open > .btn-group-raised .btn-primary.dropdown-toggle.custom-file-control::before {
   color: #fff;
-  background-color: #0D81C2 -focus;
-  border-color: #0D81C2 -borde-oscuro;
+  background-color: #0D81C2;
+  border-color: #0D81C2;
   height: 34px;
   border-radius: 50%;
 }
 
 .is-focused [class^=bmd-label], .is-focused [class*=" bmd-label"], *.is-focused [class^=bmd-label], *.is-focused [class*=" bmd-label"] {
-  color: #0D81C2 -focus;
+  color: #0D81C2;
 }
 
 .checkbox label input[type=checkbox]:checked + .checkbox-decorator .check, label.checkbox-inline input[type=checkbox]:checked + .checkbox-decorator .check {
-  color: #0D81C2 -focus;
-  border-color: #0D81C2 -focus;
+  color: #0D81C2;
+  border-color: #0D81C2;
 }
 
 .checkbox label input[type=checkbox]:checked + .checkbox-decorator .check::before, label.checkbox-inline input[type=checkbox]:checked + .checkbox-decorator .check::before {
@@ -15153,8 +15153,8 @@ a:hover {
 
 .btn.bmd-btn-fab.btn-primary:focus, .bmd-btn-fab.btn-primary.custom-file-control:focus::before, .btn.bmd-btn-fab.btn-primary.focus, .bmd-btn-fab.btn-primary.focus.custom-file-control::before, .btn.btn-raised.btn-primary:focus, .btn-raised.btn-primary.custom-file-control:focus::before, .btn.btn-raised.btn-primary.focus, .btn-raised.btn-primary.focus.custom-file-control::before, .btn-group-raised .btn.btn-primary:focus, .btn-group-raised .btn-primary.custom-file-control:focus::before, .btn-group-raised .btn.btn-primary.focus, .btn-group-raised .btn-primary.focus.custom-file-control::before {
   color: #fff;
-  background-color: #0D81C2 -focus;
-  border-color: #0D81C2 -borde-oscuro;
+  background-color: #0D81C2;
+  border-color: #0D81C2;
 }
 
 .form-control, .custom-file-control, .is-focused .form-control:not(:invalid) {
@@ -16180,6 +16180,11 @@ input[type=radio], input[type=checkbox] {
     max-width: 95% !important;
   }
 
+  #salasTableAdmin {
+    display: block;
+    overflow-x: auto;
+  }
+
   .col-md-11 {
     flex: 0 0 80%;
     max-width: 80%;
@@ -16203,6 +16208,13 @@ input[type=radio], input[type=checkbox] {
     text-align: center;
   }
 
+  .nombre-usuario {
+    float: right;
+    display: flex;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
   .derecha {
     float: left;
     width: 30%;
@@ -16221,6 +16233,33 @@ input[type=radio], input[type=checkbox] {
     margin-top: 8px;
     align-items: center;
     justify-content: center;
+  }
+
+  /*
+      .fc-today-button{
+          display: none!important;
+      }
+      .fc-prev-button{
+          display: none!important;
+      }
+      .fc-next-button{
+          margin-left:-10px!important;
+      }
+      */
+  .fc-toolbar-chunk {
+    display: block;
+  }
+
+  .fc-today-button {
+    margin-left: -10px !important;
+  }
+
+  .fc-prev-button {
+    margin-left: -10px !important;
+  }
+
+  .fc-toolbar-title {
+    margin-left: 5px !important;
   }
 
   .menu {
@@ -16377,6 +16416,52 @@ input[type=radio], input[type=checkbox] {
   #main-menu-list li li a {
     line-height: 40px !important;
   }
+
+  .panel-salas {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body-salas {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 10px 5px 1px 20px;
+  }
+
+  .fc-today-button {
+    margin-left: 13px !important;
+    margin-top: 2px !important;
+  }
+
+  .fc-prev-button {
+    margin-left: -8px !important;
+  }
+
+  .fc-next-button {
+    margin-left: 2px !important;
+  }
+
+  .fc-dayGridMonth-button {
+    width: 80px !important;
+  }
+
+  .fc-timeGridDay-button {
+    width: 80px !important;
+  }
+
+  .fc-timeGridWeek-button {
+    width: 80px !important;
+  }
+
+  .fc .fc-button-group {
+    position: relative !important;
+    width: 80px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+
+  .fc .fc-toolbar-title {
+    width: 145px !important;
+  }
 }
 @media (min-width: 577px) and (max-width: 768px) {
   .container-sm, .container {
@@ -16420,6 +16505,17 @@ input[type=radio], input[type=checkbox] {
   .derecha {
     float: left;
     width: 30%;
+  }
+
+  .nombre-usuario {
+    float: right;
+    display: flex;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .session-user {
+    display: flex !important;
   }
 
   .menu-superior-derecha {
@@ -16612,6 +16708,28 @@ input[type=radio], input[type=checkbox] {
   #main-menu-list li li a {
     line-height: 40px !important;
   }
+
+  .panel-salas {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body-salas {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 10px 5px 1px 20px;
+  }
+
+  .fc-today-button {
+    margin-top: 2px !important;
+  }
+
+  .fc-prev-button {
+    margin-left: -8px !important;
+  }
+
+  .fc-next-button {
+    margin-left: 2px !important;
+  }
 }
 @media (min-width: 769px) and (max-width: 992px) {
   .container-md, .container-sm, .container {
@@ -16630,6 +16748,13 @@ input[type=radio], input[type=checkbox] {
   .Xestion-espazos-compartidos-login {
     color: #fff;
     text-align: center;
+  }
+
+  .nombre-usuario {
+    float: right;
+    display: flex;
+    margin-right: 15px;
+    margin-top: 5px;
   }
 
   .derecha {
@@ -16830,6 +16955,16 @@ input[type=radio], input[type=checkbox] {
     align-items: center;
     justify-content: center;
   }
+
+  .panel-salas {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body-salas {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+  }
 }
 @media (min-width: 993px) and (max-width: 1199px) {
   .container-lg, .container-md, .container-sm, .container {
@@ -16840,6 +16975,15 @@ input[type=radio], input[type=checkbox] {
     float: right;
     display: flex;
     margin-right: 15px;
+    margin-top: 5px;
+  }
+
+  .nombre-proyecto {
+    width: 80%;
+    /*display: flex;*/
+    /* margin-right: 20px; */
+    margin-top: 10px;
+    /* width: 70%; */
   }
 
   .menu-superior-derecha {
@@ -16853,6 +16997,7 @@ input[type=radio], input[type=checkbox] {
     float: left;
     align-items: center;
     justify-content: center;
+    margin-top: 3px;
   }
 
   /* Oculta el enlace que debería abrir y cerrar la navegación superior en pantallas pequeñas*/
@@ -16886,16 +17031,41 @@ input[type=radio], input[type=checkbox] {
     color: #fff;
     text-align: center;
   }
+
+  .panel-salas {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body-salas {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+  }
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
   }
 
+  .card-body-salas {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+  }
+
   .nombre-usuario {
     float: right;
     display: flex;
     margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .nombre-proyecto-exterior {
+    width: 80%;
+    /*display: flex;*/
+    /* margin-right: 20px; */
+    margin-top: 10px;
+    /* width: 70%; */
   }
 
   .menu-superior-derecha {
@@ -16908,6 +17078,7 @@ input[type=radio], input[type=checkbox] {
     float: left;
     align-items: center;
     justify-content: center;
+    margin-top: 3px;
   }
 
   #main-menu-list {
@@ -16939,6 +17110,11 @@ input[type=radio], input[type=checkbox] {
   .Xestion-espazos-compartidos-login {
     color: #fff;
     text-align: center;
+  }
+
+  .panel-salas {
+    width: 12%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
   }
 }
 .container-calendario, .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
@@ -16993,11 +17169,6 @@ input[type=radio], input[type=checkbox] {
   display: inline;
 }
 
-.panel-salas {
-  width: 12%;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-
 .row-calendar {
   display: flex;
   width: 100%;
@@ -17017,6 +17188,11 @@ ul {
 .sala-nombresala {
   width: 40px;
   height: 20px;
+}
+
+.fecha {
+  position: static !important;
+  margin-top: -26px;
 }
 
 .dataTables_filter {
