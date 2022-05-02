@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if( $('#user_id').val() ==   $('#auth_user').val()){
                         $('#titulo').prop('readonly', false);
                         $('#fecha').prop('readonly', false);
-                        $('#horaInicio').prop('readonly', false);
-                        $('#horaFin').prop('readonly', false);
+                        $('#horaInicio').prop('disabled', false);
+                        $('#horaFin').prop('disabled', false);
                         $('#user_name').prop('readonly', true);
                         $('#user_correo').prop('readonly', true);
                         $('#sala_name').attr('disabled',false);
@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     else{
                         $('#titulo').prop('readonly', true);
                         $('#fecha').prop('readonly', true);
-                        $('#horaInicio').prop('readonly', true);
-                        $('#horaFin').prop('readonly', true);
+                        $('#horaInicio').prop('disabled', true);
+                        $('#horaFin').prop('disabled', true);
                         $('#user_name').prop('readonly', true);
                         $('#user_correo').prop('readonly', true);
                         $('#sala_name select').prop('readonly', true);
@@ -289,29 +289,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                           
             }
+            else if(response.error.length==1){
+                appMethods.showNotify('danger', response.message);
+            }else if(response.error.length==2){
+                console.log('estoy aquí');
+                appMethods.showNotify('danger', response.message);
+            }
             else {
 
-                
-                    $.each($('.invalid-feedback'), function (key, element) {
-                        $(element).html('');
-                        $(element).hide();
-                    });
 
-                    $.each(response.error, function (key, element) {
-                        for(var i = 0; i < element.length; i++) {
-                            if ((element[i].toUpperCase().indexOf('CONFIRMACIÓN') != -1) || (element[i].toUpperCase().indexOf('CONFIRMACION') != -1)) {
-                                $(('#invalid-feedback-' + key + '_confirmation')).html(element[i]);
-                                $(('#invalid-feedback-' + key + '_confirmation')).show();
-                                element.splice(i, 1);
-                            }
-                            break;
+                $.each(response.error, function (key, element) {
+                    for(var i = 0; i < element.length; i++) {
+                        if ((element[i].toUpperCase().indexOf('CONFIRMACIÓN') != -1) || (element[i].toUpperCase().indexOf('CONFIRMACION') != -1)) {
+                            $(('#invalid-feedback-' + key + '_confirmation')).html(element[i]);
+                            $(('#invalid-feedback-' + key + '_confirmation')).show();
+                             element.splice(i, 1);
+                             
                         }
+                       
+                            break;
+                        
+                        
+                    }
         
-                        $(('#invalid-feedback-' + key)).html(element.join('<br>'));
-                        $(('#invalid-feedback-' + key)).show();
-                    });
-                      
-                    appMethods.showNotify('danger', response.message);
+                    $(('#invalid-feedback-' + key)).html(element.join('<br>'));
+                    $(('#invalid-feedback-' + key)).show();
+
+                    //appMethods.showNotify('danger', response.message);
+                    
+                });
+                
+                //appMethods.showNotify('danger', response.message);  
+                
+                    
                    // $('#exampleModal').modal('toggle');
             }
 
@@ -334,6 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(function (error) {
             appMethods.showNotify('danger', error);
         });
+        
        
     }
 

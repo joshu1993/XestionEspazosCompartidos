@@ -75,8 +75,8 @@
                                     
                                     <div class= "form-row">
 
-                                        <div class="form-group col-md-12">
-                                            <label for="titulo" class="bmd-label-floating">Titulo</label>
+                                        <div class="form-group col-md-12 titulo">
+                                            <label for="titulo" class="bmd-label-floating titulo">Titulo</label>
                                             <input type="text" name="titulo" id="titulo" class="form-control" >
                                             <span id="invalid-feedback-title" class="invalid-feedback"></span>
                                         </div>
@@ -155,8 +155,8 @@
                                             <span id="invalid-feedback-end" class="invalid-feedback"></span>
                                         </div>
                                        
-                                        <div id="nombre_usuario" class="form-group col-md-8  ">
-                                            <label for="user_id" name="user_id" class="bmd-label-floating">Responsable</label>
+                                        <div id="nombre_usuario" class="form-group col-md-8 responsable ">
+                                            <label for="user_id" name="user_id" class="bmd-label-floating responsable">Responsable</label>
                                             <!--
                                             @if(isset($json_evento))
                                             <input type="text" name="user_name" id="user_name" class="form-control" value="{{ $json_evento->user->name}}" readonly>
@@ -189,13 +189,13 @@
                                         
                                         </div>
                                         <span id="invalid-feedback-sala_id" class="invalid-feedback"></span> 
-                                        <div id="correo_usuario" class="form-group col-md-12">
-                                            <label for="correo" class="bmd-label-floating">Correo </label>
+                                        <div id="correo_usuario" class="form-group col-md-12 correo">
+                                            <label for="correo" class="bmd-label-floating correo">Correo </label>
                                             <input type="text" name="user_correo" id="user_correo" class="form-control"  readonly>
                                         </div>
                                         
-                                        <div class="form-group col-md-12">
-                                            <label for="descripcion" class="bmd-label-floating">Descripcion</label>
+                                        <div class="form-group col-md-12 descripcion">
+                                            <label for="descripcion" class="bmd-label-floating descripcion">Descripcion</label>
                                             <textarea name="descripcion" id="descripcion" class="form-control" cols="20" rows="3"></textarea>
                                         </div>
                                     </div>

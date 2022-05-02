@@ -217,13 +217,13 @@ class HomeController extends Controller
                     Mail::to($email)->send(new XecMailable($data));
                     return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
                 }else{
-                    return response()->json(['error' => array([1]),'message' => __('validation.messages.createFailed')]);
+                    return response()->json(['error' => array(1),'message' => __('validation.messages.createFailed')]);
                 }
                     
             }
             else{
 
-                return response()->json(['error' => array([2]),'message' => __('validation.messages.dayFailed')]);
+                return response()->json(['error' => array(2),'message' => __('validation.messages.dayFailed')]);
 
             }
            
