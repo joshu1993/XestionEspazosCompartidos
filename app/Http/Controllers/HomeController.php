@@ -142,15 +142,22 @@ class HomeController extends Controller
     public function validarFecha($horaInicio, $horaFin, $sala){
         
         $evento= \App\Models\Evento::where('sala_id',$sala)->where(function($query)  use($horaInicio, $horaFin){
+                    $query->where('start','<=',$horaInicio)
+                            ->where('end','>=',$horaFin)
+                            ->orWhereBetween('start',[$horaInicio,$horaFin])
+                            ->orWhereBetween('end',[$horaInicio,$horaFin]);
+                })->get();
+
+                /*$evento= \App\Models\Evento::where('sala_id',$sala)->where(function($query)  use($horaInicio, $horaFin){
                     $query->whereBetween('start',[$horaInicio,$horaFin])
                             ->orWhereBetween('end',[$horaInicio,$horaFin]);
-                })->first();
+                })->get();*/
 
          //mira lo que hace la consulta
-        // dd($evento);
+        //dd($evento);
         
-        return $evento==null ?true :false;
-        
+        return $evento->isEmpty() ?true :false;
+       
     }
     /*
     public function validarUser($horaInicio, $horaFin, $user){
