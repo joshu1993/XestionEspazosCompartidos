@@ -151,8 +151,9 @@
                                         </div>
                                     
                                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner" style="width:400px; height:400px; margin-left:45px; object-fit: cover;object-position: center center;">
+                                            <div class="carousel-inner" style="width:500px; height:500px; margin-left:15px; object-fit: cover;object-position: center center;">
                                                 @forelse ($imagenes as $image)
+
                                                 <div class="carousel-item @if($loop->index==0) active @endif"> 
                                                 <!-- <input type="hidden" id="image" name="image" value="{{ $sala->image ?? '' }}">-->
                                                     <img id="img" class="d-block w-90" width="90%" src="../../images/salas/{{ $image->image ?? '' }}"  >
