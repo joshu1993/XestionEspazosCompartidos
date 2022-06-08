@@ -21,7 +21,7 @@ class CreateSalasTable extends Migration
             $table->integer('aforo')->nullable();
             $table->string('proyector')->nullable();
             $table->string('color')->unique();
-            //$table->string('image')->nullable();
+            
 
 
 

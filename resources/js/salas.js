@@ -2,8 +2,6 @@ import * as appMethods from './common';
 
 $(function(){
    
-
-    
     let salasUrl = "/saladata/"+$('#idUser').val()+"/";
 
     salasDatatableAdmin = $('#salasTableAdmin').DataTable({
@@ -14,8 +12,6 @@ $(function(){
         pageLength: 20,
         responsive: true,
         language: {
-            //url: "/js/datatables/es.json",
-
             decimal: "",
             emptyTable: "No hay ninguna información",
             info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -69,16 +65,13 @@ $(function(){
                 render: setActionButtons
              
             }
-
-            
+   
         ],
         
         initComplete: function(settings, json) {
             $('a[id^="btnConfirmDelete_"]').on("click",confirmDelete);
         }
-
-        
-        
+    
     });
 
     salasDatatableAdmin.on('search.dt', function(e, settings) {
@@ -95,7 +88,6 @@ $(function(){
         pageLength: 20,
         responsive: true,
         language: {
-            //url: "/js/datatables/es.json",
             decimal: "",
             emptyTable: "No hay niguna sala creada",
             info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -145,22 +137,14 @@ $(function(){
                 data: "color",
                 render: setColorButtons 
             },
-            /*
             { 
                 data:"calendar",
                 render: setCalendarButton
-            },
-            */
-            { 
-                data:"calendar",
-                render: setCalendarButton
-                //render: setCalendarButton
             },
             { data: "descripcion" }
            
         ],
-      
-        
+         
     });
 
     salasDatatable.on('search.dt', function(e, settings) {
@@ -169,8 +153,6 @@ $(function(){
         salasDatatable.state.save();
     });  
 
-    
-   // $('#updateSala').on("click",updateSala);
    $('#updateSala').on("click",updateSala);
     if ($('#delRegister').length) {
         $('#delRegister button.btn-modalAccept').on("click",deleteSalaRegister);
@@ -184,21 +166,7 @@ $(function(){
         $(this).on("click",confirmDelete);
     }); 
 
-    /*
-    
-    if( $('#idUser').val()==1){
-        salasDatatable.on('click', 'a[id^=btnConfirmDelete_]', function(){
-            $(this).on("click",confirmDelete);
-        }); 
-    }
-    */
-/*
-    
- */
-    //$('#calendarSala').on("click",calendarSala);
-
 });
-
 
 var salasDatatable = null;
 
@@ -234,30 +202,9 @@ function updateSala(e) {
 
     e.preventDefault();
     let data= new FormData($('#AddSalaForm')[0]);
-    //data.append('image', $('#image').val());
-    //console.log(data);
-   /*
-    let data={
-        //id:$('#id').val(),
-        nombre:$('#nombre').val(),
-        descripcion:$('#descripcion').val(),
-        metrosCuadrados:$('#metrosCuadrados').val(),
-        aforo:$('#aforo').val(),
-        proyector:$('#proyector').val(),
-        image:$('#image').val(),
-
-       //'_token':$("meta[name='csrf-token']").attr("content")
-
-    };
-   */ 
-   // let origin = $(e.target).closest('form').attr('name');
-    
-   //axios({
-       
+     
     $.ajax({
-        //method: 'post',
         type: "POST",
-        //url:$(e.target).closest('form').attr('action'),
         url: $('#AddSalaForm').attr('action'),
         data:data,
         contentType: false,
@@ -265,25 +212,15 @@ function updateSala(e) {
         
     })
     
-   /*
-    axios.post($(e.target).closest('form').attr('action'),data, {
-        
-        headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-    })
-    */
     .then(function(response) {
-        // console.log(response);
+       
         if (response.error.length == 0) {
             $.each($('.invalid-feedback'), function (key, element) {
                 $(element).html('');
                 $(element).hide();
             });
             appMethods.showNotify('success', response.message);
-           // if(origin === 'createSala'){
-                window.location.replace('/salas');                    
-           // } else { location.reload(); }                
+            window.location.replace('/salas');                                 
         }
         else {
             $.each($('.invalid-feedback'), function (key, element) {
@@ -304,7 +241,7 @@ function updateSala(e) {
                 $(('#invalid-feedback-' + key)).html(element.join('<br>'));
                 $(('#invalid-feedback-' + key)).show();
             });
-            //appMethods.showNotify('danger', response.data.message);
+            
         }
     })
     .catch(function (error) {
@@ -315,28 +252,8 @@ function updateSala(e) {
        
     });
 
-   //console.log($(e.target).closest('form').attr('action')) ;
-   //console.log($('#AddSalaForm').attr('action'));
-   console.log(data);
 }
 
-
-//imagen
-//$('#image').change(function(){
-    /*
-    $('#image').on('load', function (){
-           
-        let reader = new FileReader();
-    
-        reader.onload = (e) => { 
-    
-          $('#preview-image').attr('src', e.target.result); 
-        }
-    
-        reader.readAsDataURL(this.files[0]); 
-      
-       });
-*/
 function deleteSalaRegister(e) {
     $('#delRegister button.btn-modalAccept').prop('disabled', true);
     axios.post($(e.target).data('url'), {

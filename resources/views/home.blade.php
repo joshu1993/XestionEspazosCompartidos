@@ -33,8 +33,6 @@
             </div>
         </div>
         
-
-
         <div class="card-calendario">
             <div class="card-header">
                 <div class="row">
@@ -57,15 +55,12 @@
 @section('scripts')
     <script>
       
-
-        //$('#app').css("background-image","url('/images/EURORED_BACKGROUND.jpg')");
         $('#app').css("background-position","top center");
         $('#app').css("background-repeat","no repeat");
         $('#app').css("background-attachment","fixed");
         $('#app').css("background-size","cover");
         $('#app').css("background-color","#ffffff");
-
-       
+   
     </script>
     <script src="{{ asset('js/eventosAll.js?v=1.0.0') }}"></script>
 @endsection

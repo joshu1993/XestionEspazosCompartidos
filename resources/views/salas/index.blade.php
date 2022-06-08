@@ -35,8 +35,7 @@
                                             <th>Proyector</th>
                                             <th>Color</th>
                                             <th>Calendario</th>
-                                            <th></th>
-                                            
+                                            <th></th>    
                                         </tr>
                                     </thead>
                                 </table>

@@ -8,7 +8,6 @@ $(function(){
         }
     });
    
-    
     let usersUrl = "/userdata/"+$('#idUser').val()+"/";
 
     usersDatatable = $('#usersTable').DataTable({
@@ -19,7 +18,6 @@ $(function(){
         bLengthChange: false,
         pageLength: 20,
         language: {
-            //url: "/js/datatables/es.json",
             decimal: "",
             emptyTable: "No hay ninguna información",
             info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -68,15 +66,7 @@ $(function(){
             $('a[id^="btnConfirmDelete_"]').click(confirmDelete);
         }
     });
-    /*
-    usersDatatable.on('search.dt', function(e, settings) {
-        var api = new $.fn.dataTable.Api( settings );
-        var state = api.state();
-        usersDatatable.state.save();
-    
-    });      
-    */
-    
+   
     $('#updateUser').on("click",updateUsuario);
     if ($('#delRegister').length) {
         $('#delRegister button.btn-modalAccept').on("click",deleteUserRegister);
@@ -111,21 +101,17 @@ function confirmDelete(e) {
 }
 
 function updateUsuario(e) {
-   // let origin = $(e.target).closest('form').attr('name');
     axios.post($(e.target).closest('form').attr('action'), {
         'data': $(e.target).closest('form').serialize()
     })
     .then(function(response) {
-//        console.log(response);
         if (response.data.error.length == 0) {
             $.each($('.invalid-feedback'), function (key, element) {
                 $(element).html('');
                 $(element).hide();
             });
             appMethods.showNotify('success', response.data.message);
-           // if(origin === 'createUser'){
-                window.location.replace('/usuarios');                    
-            //} else { location.reload(); }                
+            window.location.replace('/usuarios');                                   
         }
         else {
             $.each($('.invalid-feedback'), function (key, element) {
@@ -146,7 +132,6 @@ function updateUsuario(e) {
                 $(('#invalid-feedback-' + key)).html(element.join('<br>'));
                 $(('#invalid-feedback-' + key)).show();
             });
-            //appMethods.showNotify('danger', response.data.message);
         }
     })
     .catch(function (error) {

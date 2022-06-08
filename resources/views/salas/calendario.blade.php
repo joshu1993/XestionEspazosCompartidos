@@ -33,7 +33,6 @@
                 </ul>
             </div>
         </div>    
-
     
         <div class="card-calendario">
             
@@ -177,7 +176,6 @@
 
                             <div class="modal-footer">
                                
-                               
                                 <button id="btnModificar" class="boton-modificar-evento" >Modificar</button>
                                 <button id="btnEliminar" class="boton-eliminar-evento" >Eliminar</button>
                                
@@ -185,11 +183,8 @@
                                 
                                 <button type="button" id="btnCancelar" class="boton-cancelar-evento" data-dismiss="modal">Cancelar</button>
                             </div>
-                        </form>   
-                        </div>
-
-                        
-                        
+                        <!--</form>   -->
+                        </div>  
                     </div>
                 </div>
                 
@@ -206,10 +201,7 @@
         $('#app').css("background-attachment","fixed");
         $('#app').css("background-size","cover");
         $('#app').css("background-color","#ffffff");
-        
-       
-
-       
+          
     </script>
      <script src="{{ asset('js/salas.js?v=1.0.0') }}"></script>
      <script src="{{ asset('js/eventosSala.js?v=1.0.0') }}"></script>

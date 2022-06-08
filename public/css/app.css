@@ -15987,7 +15987,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .carousel-control-prev {
-  margin-left: -35px !important;
+  margin-left: -25px !important;
 }
 
 .carousel-control-prev-icon {
@@ -15995,7 +15995,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .carousel-control-next {
-  margin-right: -20px !important;
+  margin-right: 25px !important;
 }
 
 .carousel-control-next-icon {

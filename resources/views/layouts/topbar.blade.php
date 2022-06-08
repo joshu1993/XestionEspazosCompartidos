@@ -18,7 +18,7 @@
                     <li><a class="btn-primary-opciones-menu" href="/calendario"><span class=""></span>Calendario</a></li>
                    
                 </div>
-                <!-- Right Side Of Navbar -->
+                
                 <div class="nombre-usuario">    
                     <li>
                         <a class="session-user" href="{{ '/usuario/'.\Auth::user()->id }}"  >

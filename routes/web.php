@@ -20,25 +20,15 @@ Route::get('/calendar/getAllEventos', [App\Http\Controllers\Auth\LoginController
 Route::get('/calendar/{sala}', [App\Http\Controllers\Auth\LoginController::class, 'getAllCalendarioSala'])->name('allCalendarioSala');     
 Route::get('/calendar/getAllEventosSala/{sala}', [App\Http\Controllers\Auth\LoginController::class, 'getAllEventosSala'])->name('getAllEventosSala');
 
-
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout'); 
 Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'customLogin'])->name('customlogin');
 
-
-//Route::post('login', 'Auth\LoginController@customLogin')->name('customlogin');
-
-//Route::get('/', function () {
-//    return view('auth/login');
-//});
-
 Route::middleware(['auth'])->group(function () {
+    
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-   //Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('index');
-   
     /*calendario*/
     
-
     Route::get('/calendario', [App\Http\Controllers\HomeController::class, 'getCalendario'])->name('calendario');
     Route::post('/createNewEvento', [App\Http\Controllers\HomeController::class, 'createNewEvento'])->name('createNewEvento');
     Route::get('/calendario/getEventos/{id}', [App\Http\Controllers\HomeController::class, 'getEventos'])->name('getEventos');
@@ -46,18 +36,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/calendario/eliminar', [App\Http\Controllers\HomeController::class, 'eliminarEvento'])->name('eliminarEvento');
     Route::post('/calendario/editar', [App\Http\Controllers\HomeController::class, 'updateEvento'])->name('updateEvento');
 
-    //Route::post('/calendario/eliminar/{id}', [App\Http\Controllers\HomeController::class, 'eliminarEvento'])->name('eliminarEvento');
-    //Route::put('/calendario/editar/{id}', [App\Http\Controllers\HomeController::class, 'updateEvento'])->name('updateEvento');
-
-    //Route::get('/createNewEvento', [App\Http\Controllers\HomeController::class, 'createEvento'])->name('evento.create');
-    //Route::post('/evento/crear', [App\Http\Controllers\HomeController::class, 'createNewEvento'])->name('evento.createNewEvento');
-   // Route::get('/calendario', [App\Http\Controllers\HomeController::class, 'getCalendario'])->name('calendario');
-
+    
     /*apartado usuarios*/
-    //Route::get('/currentUser', [App\Http\Controllers\UsersController::class, 'getCurrentUser'])->name('current_user');
+    
     Route::get('/usuarios', [App\Http\Controllers\UsersController::class, 'getList'])->name('users');
     Route::get('/userdata/{id}', [App\Http\Controllers\UsersController::class, 'getTableData'])->name('usersdata');
-    
     Route::get('/usuario/{user}', [App\Http\Controllers\UsersController::class, 'editUsuario'])->name('user.edit');
     Route::post('/usuario/editar', [App\Http\Controllers\UsersController::class, 'updateUsuario'])->name('user.update');
     Route::post('/usuario/eliminar', [App\Http\Controllers\UsersController::class, 'eliminarUsuario'])->name('user.delete');
@@ -73,17 +56,12 @@ Route::middleware(['auth'])->group(function () {
      Route::post('/sala/eliminar', [App\Http\Controllers\SalasController::class, 'eliminarSala'])->name('sala.delete');
      Route::get('/createNewSala', [App\Http\Controllers\SalasController::class, 'createSala'])->name('sala.create');
      Route::post('/sala/crear', [App\Http\Controllers\SalasController::class, 'createNewSala'])->name('sala.createNewSala');
- 
      Route::get('/calendario/{sala}', [App\Http\Controllers\SalasController::class, 'getCalendarioSala'])->name('calendarioSala');
-    
      Route::get('/calendario/getEventosSala/{sala}', [App\Http\Controllers\SalasController::class, 'getEventosSala'])->name('getEventosSala');
      
- 
     /*apartado eventos*/
+
     Route::get('/eventos', [App\Http\Controllers\EventosController::class, 'getEventos'])->name('eventos');
     Route::get('/eventosdata/{id}', [App\Http\Controllers\EventosController::class, 'getTableEventos'])->name('eventosdata');
-    /*
-    Route::get('{sala}/createNewEvento', [App\Http\Controllers\EventosController::class, 'createEvento'])->name('evento.create');
-    Route::post('/evento/crear', [App\Http\Controllers\EventosControlle::class, 'createNewEvento'])->name('evento.createNewEvento');
-    */
+   
 });

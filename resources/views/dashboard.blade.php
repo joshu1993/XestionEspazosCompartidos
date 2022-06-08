@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    
         <div class="row-calendar">
             <div class="panel-salas">
                 <div class="card-header">
@@ -50,15 +49,7 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                            <!--
-                            @if(isset($json_evento))    
-                            <form name="updateEvento" id="updateEvento" action="{{ route('updateEvento') }}" method="POST">
-                            @else
-
-                            <form name="createEvento" action="{{ route('createNewEvento') }}" method="POST">
-                            @endif
-
-    -->
+                            
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModal">Agregar Evento</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,8 +62,6 @@
                                 <input type="hidden" id="id" name="id">
                                 <input type="hidden" name="auth_user" id="auth_user" value="{{ $auth_user['id'] ?? '' }}">                        
                                 
-                                    
-                                    
                                     <div class= "form-row">
 
                                         <div class="form-group col-md-12 titulo">
@@ -157,23 +146,15 @@
                                        
                                         <div id="nombre_usuario" class="form-group col-md-8 responsable ">
                                             <label for="user_id" name="user_id" class="bmd-label-floating responsable">Responsable</label>
-                                            <!--
-                                            @if(isset($json_evento))
-                                            <input type="text" name="user_name" id="user_name" class="form-control" value="{{ $json_evento->user->name}}" readonly>
-                                            @else
-    -->
+                                           
                                             <input type="hidden" name="user_id" id="user_id" class="form-control" >
                                             <input type="text" name="user_name" id="user_name" class="form-control"  readonly>
-                                            
-                                            <!-- @endif-->
+                                         
                                         </div>
                                     
                                         <div class="form-group col-md-4 customSelect ">
                                             <label for="sala_id" class="bmd-label-floating">Sala</label>
-                                        <!-- @if(isset($json_evento))
-                                            <input type="text" name="sala_id" id="sala_id" class="form-control" value="{{ $json_evento->sala->nombre}}" readonly>
-                                            @else -->
-                                            
+                                      
                                             <select class="form-control" id="sala_name" name="sala_name" onChange="mostrarValor(this.value);" required>
                                                 <option value="empty"></option>
                                                 @foreach($salas as $sala)
@@ -183,8 +164,6 @@
                                                 @endforeach
                                             </select>
                                             
-                                        <!-- @endif-->
-
                                         <input type="hidden" name="sala_id" id="sala_id" class="form-control" value=""  >
                                         
                                         </div>
@@ -202,20 +181,14 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                
-                                
                                     <button id="btnModificar" class="boton-modificar-evento" >Modificar</button>
                                     <button id="btnEliminar" class="boton-eliminar-evento" >Eliminar</button>
-                                
                                     <button  id="btnAgregar" class="boton-agregar-evento" >Agregar</button>
-                                    
                                     <button type="button" id="btnCancelar" class="boton-cancelar-evento" data-dismiss="modal">Cancelar</button>
                                 </div>
-                            </form>   
+                            <!--</form> -->  
                             </div>
-
-                            
-                            
+   
                         </div>
                     </div>
                     

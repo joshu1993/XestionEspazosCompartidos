@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendarSala');
 
         var calendarSala = new FullCalendar.Calendar(calendarEl, {
-            //plugins: [ interactionPlugin ],
+
             initialView: 'dayGridMonth',
             selectable: true,
             locale: 'es',
@@ -44,20 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('#btnModificar').hide();
                 $('#btnEliminar').hide();
                 
-
                 $('#exampleModal').modal();
             
             },
 
-        
             eventClick: function (info) {
 
-            
                 $.ajax({
                     url: '/calendario/showEvento/'+info.event.id,
                     type: "GET",
                     dataType: 'json',
-                // data: data,
                     
                     success:function(data){
                 
@@ -69,12 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         let dia= (info.event.start.getDate());
                         let anho= (info.event.start.getFullYear());
                         $('#user_id').val(data.user_id);
-                    // console.log($('#user_id').val()) ;
-                    // console.log( $('#auth_user').val());
-
+                   
                         mes=(mes<10)?"0" +mes:mes; //si el mes es menor a 10 entonces concatenas el 0 a ese mes de lo contrario lo deja como está
                         dia=(dia<10)?"0" +dia:dia;
-
 
                         let horaInicial=info.event.start.getHours();
                         let minutosInicial=info.event.start.getMinutes();
@@ -89,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         minutosFinal=(minutosFinal<10)?"0" +minutosFinal:minutosFinal;
 
                         let horarioInicio=(horaInicial+":"+minutosInicial);
-
                         let horarioFin=(horaFinal+":"+minutosFinal);
 
                         $('#fecha').val(anho+"-"+mes+"-"+dia);
@@ -125,57 +117,42 @@ document.addEventListener('DOMContentLoaded', function() {
                             $('#btnModificar').hide();
                             $('#btnEliminar').hide();
                         }
-                    
-                            
+              
                         $('#exampleModal').modal();
                     
-
                     }    
                     
-                }); // end ajax call
+                }); 
                 
             },
         
-
             events:"/calendario/getEventosSala/"+$('#nombreSala').val(),
 
         });
 
-    
         calendarSala.render();
 
          $('#btnAgregar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
         EnviarInformacion('/createNewEvento',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
 
     });
 
     $('#btnEliminar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
-        //EnviarInformacion('/calendario/eliminar/'+$('#id').val(),ObjEvento);
         EliminarInformacion('/calendario/eliminar',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
 
     });
 
     $('#btnModificar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
         EnviarInformacion('/calendario/editar',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
-
     });
 
     function guardarDatosEventos(method){
@@ -185,80 +162,38 @@ document.addEventListener('DOMContentLoaded', function() {
             title:$('#titulo').val(),
             start:$('#fecha').val()+" "+$('#horaInicio').val(),
             end:$('#fecha').val()+" "+$('#horaFin').val(),
-            //user_id:$('#user_id').val(),
             sala_id:$('#sala_id').val(),
             descripcion:$('#descripcion').val(),
             
-
             '_token':$("meta[name='csrf-token']").attr("content"),
             '_method':method
         }
 
         return nuevoEvento;
-        //return (nuevoEvento);
-       //console.log(nuevoEvento);
+        
     }
-/*
-    function EnviarInformacion(accion,objEvento){
-
-        $.ajax({
-           type: "POST",
-            //url: $(accion.target).closest('form').attr('action'),
-           //url: $(accion.target).closest('form').attr('name'),
-           //url:"/calendario"+accion,
-           url:accion,
-           data:objEvento,
-           success:function(msg){
-               
-                console.log(msg);
-                $('#exampleModal').modal('toggle');
-
-                calendarSala.refetchEvents(); 
-            
-           },
-           error:function(){alert("hay un error");} 
-        });
-    }
-    */
 
     function EnviarInformacion(accion,objEvento){
 
         $.ajax({
            type: "POST",
-            //url: $(accion.target).closest('form').attr('action'),
-           //url: $(accion.target).closest('form').attr('name'),
-           //url:"/calendario"+accion,
            url:accion,
            data:objEvento,
-           /*
-           success:function(msg){
-               
-                console.log(msg);
-                $('#exampleModal').modal('toggle');
-
-                calendar.refetchEvents(); 
-            
-           },
-           error:function(){alert("hay un error");} 
-           */
+          
         })
            .then(function(response) {
-            // console.log(response);
+           
             if (response.error.length == 0) {
                 $.each($('.invalid-feedback'), function (key, element) {
                     $(element).html('');
                     $(element).hide();
                 });
               
-                    
                     appMethods.showNotify('success', response.message);
 
                     $('#exampleModal').modal('toggle');
     
-                    calendarSala.refetchEvents(); 
-
-                
-                          
+                    calendarSala.refetchEvents();           
             }
             else if(response.error.length==1){
                 appMethods.showNotify('danger', response.message);
@@ -268,58 +203,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             else {
 
-
                 $.each(response.error, function (key, element) {
                     for(var i = 0; i < element.length; i++) {
                         if ((element[i].toUpperCase().indexOf('CONFIRMACIÓN') != -1) || (element[i].toUpperCase().indexOf('CONFIRMACION') != -1)) {
                             $(('#invalid-feedback-' + key + '_confirmation')).html(element[i]);
                             $(('#invalid-feedback-' + key + '_confirmation')).show();
                              element.splice(i, 1);
-                             
                         }
-                       
-                            break;
-                        
-                        
+                            break; 
                     }
         
                     $(('#invalid-feedback-' + key)).html(element.join('<br>'));
                     $(('#invalid-feedback-' + key)).show();
-
-                    //appMethods.showNotify('danger', response.message);
-                    
+ 
                 });
-                
-                //appMethods.showNotify('danger', response.message);  
-                
-                    
-                   // $('#exampleModal').modal('toggle');
+              
             }
-
-                
-
-            /*
-            if(response.validarFecha.length==0){
-                $.each($('.invalid-feedback'), function (key, element) {
-                    $(element).html('');
-                    $(element).hide();
-                });
-                  
-                appMethods.showNotify('danger', response.message);
-                $('#exampleModal').modal('toggle');
-            }
-            */
-
 
         })
         .catch(function (error) {
             appMethods.showNotify('danger', error);
-        });
-        
-       
-       
+        });   
     }
-
 
     function EliminarInformacion(accion,objEvento){
        
@@ -350,21 +255,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     function limpiarFormulario(){
 
-        //$('#id').val("");
         $('#titulo').val("");
         $('#fecha').val("");
         $('#horaInicio').val("");
         $('#horaFin').val("");
         $('#user_id').val("");
-       // $('#sala_id').val("");
-       
         $('#descripcion').val("");
 
     }
 
-
-   // });
 });

@@ -41,9 +41,6 @@ class SalasController extends Controller
         );
         
         $user = \App\Models\User::find($id_auth_user);
-
-        //dd($user);
-        //console.log($user);
        
         if($user->role_id == 1){
             $dbData = \App\Models\Sala::all(); 
@@ -87,9 +84,7 @@ class SalasController extends Controller
                 }
             }
         }
-        //dd($data);
-       
-              
+           
         return Response::json($data); 
 
     }
@@ -162,22 +157,12 @@ class SalasController extends Controller
         
         $imagenes=\App\Models\Image::where('sala_id',$sala_id)->get();
 
-        //$roles = \App\Models\Role::all();
         $roles=\App\Models\Role::where('id', 2)->orWhere('id',3)->get();
 
-        /*
-
-        $roles=\App\Models\Sala::whereHas('salaRoles', function($q) use($sala_id) {
-            $q->select('role_id')->where('sala_id', $sala_id);
-        })->get();
-        */
-        
         $section = 'salas';
         $id_auth_user = Auth::id();
         $auth_user = \App\Models\User::find($id_auth_user);
 
-        //dd($sala);
-        
         return view('salas.form', compact('sala','imagenes', 'roles','section','auth_user'));
    
     }
@@ -189,11 +174,8 @@ class SalasController extends Controller
 
         $data = (null !== $request->all()) ? $request->all() : '';
 
-        //dd($data);
-
         if ($data != '') {
     		
-
     		$validateOptions = array(
                 
                 'nombre' => 'required',
@@ -206,9 +188,7 @@ class SalasController extends Controller
                
 		    );
 
-    		
 	    	$validator = Validator::make($data, $validateOptions);
-
 
 	        if ($validator->passes()) {
 
@@ -228,7 +208,6 @@ class SalasController extends Controller
 
                 } 
 
-                //dd($salaArray);
                 $sala->salaRoles()->sync($salaArray);
                 $sala->save();
             }
@@ -253,101 +232,79 @@ class SalasController extends Controller
 
 
 
-public function eliminarSala(Request $request) {
-    $id = (null !== $request->input('id')) ? $request->input('id') : '';
-    
-   
-    if ($id > 0) {
+    public function eliminarSala(Request $request) {
+        $id = (null !== $request->input('id')) ? $request->input('id') : '';
         
-        $images=\App\Models\Image::where('sala_id',$id)->get();
-        
-        foreach($images as $image){
-            if (File::exists("images/salas/".$image->image)) {
-               File::delete("images/salas/".$image->image);
-           }
-           //\App\Models\Image::destroy($image);
-        }
-        DB::table('images')->where('sala_id',$id)->delete();
-        DB::table('sala_roles')->where('sala_id',$id)->delete();
-        
-        \App\Models\Sala::destroy($id);
-        //$id->delete();
-                                       
-        return response()->json(['status'=> 'OK', 'message' => __('validation.messages.deleteSuccess')]);
-    }
-    return response()->json(['status'=> 'KO', 'message' => __('validation.messages.deleteError')]);            
     
-}
-
-
-//calendario sala
-
-public function getCalendarioSala($nombresala) {
-
-    //dd($nombresala);
-
-    $sala = \App\Models\Sala::where('nombre',$nombresala)->first();
-    //$sala = \App\Models\Sala::find($nombresala);
-    //$sala = json_decode($sala,true);
-    //dd($sala);
-
-   // dd($sala);
-    $section = 'calendario';
-    $id_auth_user = Auth::id();
-    $auth_user = \App\Models\User::find($id_auth_user);
-    
-    //dd($sala);
-    //dd($auth_user);
-    $rol=$auth_user->role_id;
-    if($rol == 1){
-
-        $salas=\App\Models\Sala::select('id','nombre','color')->orderBy('nombre')->get();
-    }
-    else{
-
-        $salas=\App\Models\Sala::select('id','nombre','color')->whereHas('salaRoles', function($q) use($rol) {
-            $q->where('role_id', $rol);
-        })->orderBy('nombre')->get();
-    }
-
-    return view('salas.calendario', compact('sala', 'section','auth_user','salas'));
-}
-
-
-
-public function getEventosSala($sala) {
-        
-    $data = [];
-    
-        $sala_id=\App\Models\sala::where('nombre',$sala)->first(); 
-       // $sala_id=\App\Models\sala::find($sala); 
-       // console.log($sala_id);
-        $sal=$sala_id->id;
-       
-
-        $dbEventos = \App\Models\Evento::where('sala_id',$sal)->get(); 
+        if ($id > 0) {
             
-           
-                      
-             foreach ($dbEventos as $evento) { 
-                    $dato=[];
-                    $dato['id'] =$evento->id;
-                        $dato['title'] = $evento->title;
-                        $dato['start'] = $evento->start;
-                        $dato['end'] = $evento->end;
-                        $dato['nombreUser']= $evento->user->name;
-                        $dato['nombreSala']= $evento->sala->nombre;
-                        $dato['color']= $evento->sala->color;
-                        $dato['descripcion']= $evento->descripcion;
-                        $data[]=$dato;
+            $images=\App\Models\Image::where('sala_id',$id)->get();
+            
+            foreach($images as $image){
+                if (File::exists("images/salas/".$image->image)) {
+                File::delete("images/salas/".$image->image);
             }
+            }
+            DB::table('images')->where('sala_id',$id)->delete();
+            DB::table('sala_roles')->where('sala_id',$id)->delete();
             
-    //return Response::json($eventos); 
- 
-    return response()->json($data);
-}
+            \App\Models\Sala::destroy($id);
+                                
+            return response()->json(['status'=> 'OK', 'message' => __('validation.messages.deleteSuccess')]);
+        }
+        return response()->json(['status'=> 'KO', 'message' => __('validation.messages.deleteError')]);            
+        
+    }
+
+    //calendario sala
+
+    public function getCalendarioSala($nombresala) {
+
+        $sala = \App\Models\Sala::where('nombre',$nombresala)->first();
     
+        $section = 'calendario';
+        $id_auth_user = Auth::id();
+        $auth_user = \App\Models\User::find($id_auth_user);
+    
+        $rol=$auth_user->role_id;
+        if($rol == 1){
 
+            $salas=\App\Models\Sala::select('id','nombre','color')->orderBy('nombre')->get();
+        }
+        else{
 
+            $salas=\App\Models\Sala::select('id','nombre','color')->whereHas('salaRoles', function($q) use($rol) {
+                $q->where('role_id', $rol);
+            })->orderBy('nombre')->get();
+        }
+
+        return view('salas.calendario', compact('sala', 'section','auth_user','salas'));
+    }
+
+    public function getEventosSala($sala) {
+            
+        $data = [];
+        
+            $sala_id=\App\Models\sala::where('nombre',$sala)->first(); 
+            $sal=$sala_id->id;
+        
+            $dbEventos = \App\Models\Evento::where('sala_id',$sal)->get(); 
+                        
+                foreach ($dbEventos as $evento) { 
+                        $dato=[];
+                        $dato['id'] =$evento->id;
+                            $dato['title'] = $evento->title;
+                            $dato['start'] = $evento->start;
+                            $dato['end'] = $evento->end;
+                            $dato['nombreUser']= $evento->user->name;
+                            $dato['nombreSala']= $evento->sala->nombre;
+                            $dato['color']= $evento->sala->color;
+                            $dato['descripcion']= $evento->descripcion;
+                            $data[]=$dato;
+                }
+                
+        return response()->json($data);
+    }
+        
 
 }

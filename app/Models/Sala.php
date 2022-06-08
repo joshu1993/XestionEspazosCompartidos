@@ -19,7 +19,7 @@ class Sala extends Model
         'aforo', 
         'proyector',
         'color'
-        //'image'
+        
     ];
 
     public function eventos()

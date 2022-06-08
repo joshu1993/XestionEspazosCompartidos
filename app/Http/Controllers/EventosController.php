@@ -21,7 +21,6 @@ use Carbon\Carbon;
 
 class EventosController extends Controller
 {
-    //
 
     public function getEventos()
     {
@@ -98,13 +97,7 @@ class EventosController extends Controller
 
         }
 
-           // dd($data);
             return Response::json($data); 
         }
-       
-              
-        
-
-    
-
+  
 }

@@ -33,15 +33,12 @@
             </div>
         </div>
         
-
-
         <div class="card-calendario">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-11">
                         <input type="hidden" id="nombreSala" name="nombreSala" value="{{ $sala->nombre }}">
-                        <h3>Calendario {{ $sala->nombre }}</h3>
-                              
+                        <h3>Calendario {{ $sala->nombre }}</h3>         
                     </div>      
                 </div>
             </div>
@@ -57,15 +54,12 @@
 @section('scripts')
     <script>
       
-
-        //$('#app').css("background-image","url('/images/EURORED_BACKGROUND.jpg')");
         $('#app').css("background-position","top center");
         $('#app').css("background-repeat","no repeat");
         $('#app').css("background-attachment","fixed");
         $('#app').css("background-size","cover");
         $('#app').css("background-color","#ffffff");
-
-       
+   
     </script>
     <script src="{{ asset('js/eventosAllSala.js?v=1.0.0') }}"></script>
 @endsection

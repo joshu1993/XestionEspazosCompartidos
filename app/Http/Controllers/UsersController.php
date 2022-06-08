@@ -77,8 +77,6 @@ public function createUser(Request $request){
  
     public function createNewUser(Request $request){
 
-      
-
         $data = $request->all();
         $info = (null !== $request->input('data')) ? $request->input('data') : '';
             
@@ -110,9 +108,7 @@ public function createUser(Request $request){
                             
             ]);
 
-            $email= "joshua93.futbol@gmail.com"; //pruebas mientras 
-
-            //$email=$data['email']; //esto es cuando quiera subir la aplicacion, funciona bien
+            $email=$data['email'];
 
             Mail::to($email)->send(new NewUserXec($data));
             return response()->json(['error'=> array(), 'message' => __('validation.messages.createSuccess')]);
@@ -166,9 +162,7 @@ public function createUser(Request $request){
 	        }
 	    	return response()->json(['error'=>$validator->errors()]);
     	}
-    }
-
-    
+    } 
 
     public function eliminarUsuario(Request $request) {
     	$id = (null !== $request->input('id')) ? $request->input('id') : '';

@@ -53,7 +53,7 @@ class HomeController extends Controller
         $section = 'home';
         $eventos=\App\Models\Evento::all();
         $salas=\App\Models\Sala::all();
-        //return view('home');
+        
         return view(' home', compact('section','eventos','salas'));
     }
     
@@ -61,7 +61,7 @@ class HomeController extends Controller
     {
         $section = 'dashboard';
         $id_auth_user = Auth::id();
-        $auth_user = \App\Models\User::find($id_auth_user); //cojo el nombre de usuario que hace la reserva
+        $auth_user = \App\Models\User::find($id_auth_user); 
       
         $eventos=\App\Models\Evento::all();
        
@@ -114,8 +114,6 @@ class HomeController extends Controller
             foreach ($dbeventoRol as $eventoRol) { 
                 $dbData = \App\Models\Evento::where('sala_id', $eventoRol->sala_id )->get(); 
 
-                //$dbData = \App\Models\Evento::all(); 
-                   
                 foreach ($dbData as $evento) {
                     $dato=[];
                     $dato['id'] =$evento->id;
@@ -147,48 +145,20 @@ class HomeController extends Controller
                             ->orWhereBetween('start',[$horaInicio,$horaFin])
                             ->orWhereBetween('end',[$horaInicio,$horaFin]);
                 })->get();
-
-                /*$evento= \App\Models\Evento::where('sala_id',$sala)->where(function($query)  use($horaInicio, $horaFin){
-                    $query->whereBetween('start',[$horaInicio,$horaFin])
-                            ->orWhereBetween('end',[$horaInicio,$horaFin]);
-                })->get();*/
-
-         //mira lo que hace la consulta
-        //dd($evento);
         
         return $evento->isEmpty() ?true :false;
        
     }
-    /*
-    public function validarUser($horaInicio, $horaFin, $user){
-        
-        $evento= \App\Models\Evento::where('user_id',$user)->where(function($query)  use($horaInicio, $horaFin){
-                    $query->whereBetween('start',[$horaInicio,$horaFin])
-                            ->orWhereBetween('end',[$horaInicio,$horaFin]);
-                })->first();
-
-        //dd($evento) //mira lo que hace la consulta
-        
-        return $evento==null ?true :false;
-    }
-    */
-
    
     public function createNewEvento(Request $request){
        
-        //$id=Auth::user()->id; 
-       // $data['user_id'] = Auth::user()->id; 
+       
+        $email= Auth::user()->email; 
+        $data = request()->all();
+        $data['user_id'] = Auth::user()->id;
 
-        //$email= Auth::user()->email; //funciona bien, poner cuando se suba proyecto
-
-        $email= "joshua93.futbol@gmail.com"; //prueba mientras no se suba
-
-        //dd($email);
-       $data = request()->all();
-       $data['user_id'] = Auth::user()->id;
-
-       //$hoy = Carbon::today();
-       $mañana= new Carbon('tomorrow'); 
+       
+        $mañana= new Carbon('tomorrow'); 
         $datos= array(
                 
             'title' => 'required',
@@ -270,22 +240,17 @@ class HomeController extends Controller
     public function updateEvento(Request $request){ 
 
         $data = (null !== $request->all()) ? $request->all() : '';
-        //dd($info);
-        //$hoy = Carbon::today();
+        
         $mañana= new Carbon('tomorrow'); 
          
     	if ($data != '') {
-    		//parse_str($info, $data);
-            //$email= Auth::user()->email;
-
-            $email= "joshua93.futbol@gmail.com";
+    		
+            $email= Auth::user()->email;
 
     		$validateOptions = array(
                 'title' => 'required',
                 'start'=>'required | date_format:Y-m-d H:i|before:end',
                 'end'=>'required | date_format:Y-m-d H:i',
-               // 'user_id' => 'required',
-               //'sala_id' => 'required',
                 'descripcion' => 'nullable'
 		    );
 
@@ -334,16 +299,11 @@ class HomeController extends Controller
     	$id = (null !== $request->input('id')) ? $request->input('id') : '';
 
         if ($id > 0) {
-            //Schema::disableForeignKeyConstraints();
-            \App\Models\Evento::destroy($id);
-            //Schema::enableForeignKeyConstraints();                                
+            \App\Models\Evento::destroy($id);                            
             return response()->json(['status'=> 'OK', 'message' => __('validation.messages.deleteSuccess')]);
         }
         return response()->json(['status'=> 'KO', 'message' => __('validation.messages.deleteError')]); 
     }
-
-
-
 
 
 }

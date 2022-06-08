@@ -24,7 +24,6 @@
                 <form name="createSala" id="AddSalaForm" action="{{ route('sala.createNewSala') }}" method="POST" enctype="multipart/form-data" id="image-upload-preview">
                 @endif
                     @csrf 
-                    <!--<input type="hidden" id="nombre" name="nombre" value="{{ $sala->nombre ?? '' }}">-->
                     <input type="hidden" id="id" name="id" value="{{ $sala->id ?? '' }}">
                     <input type="hidden" id="idUser" name="idUser" value="{{ $auth_user['id'] ?? '' }}">
                     <input type="hidden" id="user_role" name="user_role" value="{{ $auth_user['role_id'] ?? '' }}">
@@ -88,8 +87,7 @@
                                                 </select>
                                             </div>
                                         @endif
-
-                                        
+  
                                     </div>
                                 </div>
                     
@@ -151,11 +149,10 @@
                                         </div>
                                     
                                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner" style="width:500px; height:500px; margin-left:15px; object-fit: cover;object-position: center center;">
+                                            <div class="carousel-inner" style="width:500px; height:400px; margin-left:15px; object-fit: cover;object-position: center center;">
                                                 @forelse ($imagenes as $image)
 
                                                 <div class="carousel-item @if($loop->index==0) active @endif"> 
-                                                <!-- <input type="hidden" id="image" name="image" value="{{ $sala->image ?? '' }}">-->
                                                     <img id="img" class="d-block w-90" width="90%" src="../../images/salas/{{ $image->image ?? '' }}"  >
                                                 </div>
                                                 @empty
@@ -169,12 +166,12 @@
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-
+                                                
                                             </div>
                                             
                                         </div>
                                     </div>
-                                    <!--<input id="image"  name="image" type="file">-->
+                                  
                                 </div>
                                 @endif
                                 @if($auth_user->role_id == 1) 
@@ -213,7 +210,6 @@
                     </div>
                 </form>
 
-
             </div>
         </div>
     </div>
@@ -223,7 +219,6 @@
 @section('scripts')
     <script src="{{ asset('js/salas.js?v=1.0.0') }}"></script>
     
-   
     <script type="text/javascript">
          $(document).ready(function(){
             $('.multiselect_box').selectpicker();

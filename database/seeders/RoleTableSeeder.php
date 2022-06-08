@@ -20,7 +20,7 @@ class RoleTableSeeder extends Seeder
         	['id' => 1, 'nombreRol' => 'Administrador'],
             ['id' => 2, 'nombreRol' => 'Profesor'],
             ['id' => 3, 'nombreRol' => 'Alumno'],
-           // ['id' => 4, 'nombreRol' => 'UsuarioNoRegistrado'],
+
         ]);
         
     }

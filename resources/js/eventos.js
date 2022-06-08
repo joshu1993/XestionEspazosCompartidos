@@ -1,11 +1,11 @@
 import * as appMethods from './common';
 
- //var calendar =null //variable global
+ 
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        //plugins: [ interactionPlugin ],
+        
         initialView: 'dayGridMonth',
         selectable: true,
         locale: 'es',
@@ -56,19 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
        
         eventClick: function (info) {
 
-           
             $.ajax({
                 url: '/calendario/showEvento/'+info.event.id,
                 type: "GET",
                 async: true,
                 dataType: 'json',
-               // data: data,
-                
+               
                 success:function(data){
                
-                    console.log(data);
-                    
-                    
                     $("#nombre_usuario").show();
                     $("#correo_usuario").show();
                     $('#id').val(data.id);
@@ -77,12 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     let dia= (info.event.start.getDate());
                     let anho= (info.event.start.getFullYear());
                     $('#user_id').val(data.user_id);
-                   // console.log($('#user_id').val()) ;
-                   // console.log( $('#auth_user').val());
-
+                  
                     mes=(mes<10)?"0" +mes:mes; //si el mes es menor a 10 entonces concatenas el 0 a ese mes de lo contrario lo deja como está
                     dia=(dia<10)?"0" +dia:dia;
-
 
                     let horaInicial=info.event.start.getHours();
                     let minutosInicial=info.event.start.getMinutes();
@@ -109,30 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#sala_id').val(data.sala_id);
 
                     $('#sala_name option[value="'+data.sala_id+'"]').attr("selected","selected");
-                    
-                    //$('#sala_name option').on("change");
-
-                    //$("#sala_name select").val(data.sala_id).on("change");
-                    console.log(data.sala_id);
-                    console.log(data.nombreSala);
                    
-                    //console.log($('#sala_name').val());
-                   
-                   
-                    //$('#sala_name option[value="'+data.sala_id+'"]').attr("selected", "selected");
-
-                    //$('#sala_name select').val(data.nombreSala).on( "change" );
-                    /*
-                    let sb = document.querySelector('#sala_name');
-
-                    console.log(sb);
-
-                    console.log(sb.options, data.nombreSala);
-
-                    $('#sala_name').val(sb.options, option => data.sala_id)
-                    .map(option => data.nombreSala);
-                    */
-
                     $('#user_correo').val(data.correoUser);
 
                     $('#descripcion').val(data.descripcion);
@@ -170,14 +139,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 }    
                 
-            }); // end ajax call
+            }); 
             $("#sala_name").find('option').attr("selected",false) ;
             
         },
     
-        
         events:"/calendario/getEventos/"+$('#idUser').val(),
-
 
         eventRender: function(event, element) {
             element.qtip({
@@ -188,46 +155,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
-   
     calendar.render();
-
-    
-   
 
     $('#btnAgregar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
         EnviarInformacion('/createNewEvento',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
+        
 
     });
 
     $('#btnEliminar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
-        //EnviarInformacion('/calendario/eliminar/'+$('#id').val(),ObjEvento);
         EliminarInformacion('/calendario/eliminar',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
-
+      
     });
 
     $('#btnModificar').on("click",function(){
 
-        //guardarDatosEventos("POST");
-        
         let ObjEvento= guardarDatosEventos("POST");
 
         EnviarInformacion('/calendario/editar',ObjEvento);
-        //EnviarInformacion('',ObjEvento);
-        
-        
-        
+      
     });
 
     function guardarDatosEventos(method){
@@ -245,49 +197,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         return nuevoEvento;
-        //return (nuevoEvento);
-       //console.log(nuevoEvento);
+       
     }
 
     function EnviarInformacion(accion,objEvento){
 
         $.ajax({
            type: "POST",
-            //url: $(accion.target).closest('form').attr('action'),
-           //url: $(accion.target).closest('form').attr('name'),
-           //url:"/calendario"+accion,
            url:accion,
            data:objEvento,
-           /*
-           success:function(msg){
-               
-                console.log(msg);
-                $('#exampleModal').modal('toggle');
-
-                calendar.refetchEvents(); 
-            
-           },
-           error:function(){alert("hay un error");} 
-           */
+          
         })
            .then(function(response) {
-            // console.log(response);
+           
             if (response.error.length == 0) {
                 $.each($('.invalid-feedback'), function (key, element) {
                     $(element).html('');
                     $(element).hide();
                 });
               
-                    
                     appMethods.showNotify('success', response.message);
 
                     $('#exampleModal').modal('toggle');
     
                     calendar.refetchEvents(); 
-
-
-                
-                          
+            
             }
             else if(response.error.length==1){
                 appMethods.showNotify('danger', response.message);
@@ -296,58 +230,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 appMethods.showNotify('danger', response.message);
             }
             else {
-
-
                 $.each(response.error, function (key, element) {
                     for(var i = 0; i < element.length; i++) {
                         if ((element[i].toUpperCase().indexOf('CONFIRMACIÓN') != -1) || (element[i].toUpperCase().indexOf('CONFIRMACION') != -1)) {
                             $(('#invalid-feedback-' + key + '_confirmation')).html(element[i]);
                             $(('#invalid-feedback-' + key + '_confirmation')).show();
-                             element.splice(i, 1);
-                             
+                             element.splice(i, 1);    
                         }
-                       
-                            break;
-                        
-                        
+                            break; 
                     }
         
                     $(('#invalid-feedback-' + key)).html(element.join('<br>'));
                     $(('#invalid-feedback-' + key)).show();
-
-                    //appMethods.showNotify('danger', response.message);
-                    
+  
                 });
-                
-                //appMethods.showNotify('danger', response.message);  
-                
-                    
-                   // $('#exampleModal').modal('toggle');
+               
             }
-
-                
-
-            /*
-            if(response.validarFecha.length==0){
-                $.each($('.invalid-feedback'), function (key, element) {
-                    $(element).html('');
-                    $(element).hide();
-                });
-                  
-                appMethods.showNotify('danger', response.message);
-                $('#exampleModal').modal('toggle');
-            }
-            */
-
 
         })
         .catch(function (error) {
             appMethods.showNotify('danger', error);
         });
-        
-       
+          
     }
-
 
     function EliminarInformacion(accion,objEvento){
        
@@ -380,15 +285,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function limpiarFormulario(){
 
-        //$('#id').val("");
         $('#titulo').val("");
         $('#fecha').val("");
         $('#horaInicio').val("");
         $('#horaFin').val("");
         $('#user_id').val("");
-       // $('#sala_id').val("");
-       // $('#sala_nombre').val("");
-       
         $('#descripcion').val("");
 
     }

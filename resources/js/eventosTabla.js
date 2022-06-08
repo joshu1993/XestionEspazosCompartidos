@@ -12,7 +12,6 @@ $(function(){
         pageLength: 20,
         responsive: true,
         language: {
-            //url: "/js/datatables/es.json",
             decimal: "",
             emptyTable: "No hay niguna reserva de sala",
             info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -32,8 +31,6 @@ $(function(){
                 next: "Siguiente",
                 previous: "Anterior"
             }
-
-
         },
         ajax: {
             url: eventosUrl,
@@ -47,15 +44,7 @@ $(function(){
             }
            
         ],
-        /*
-        columnDefs: [
-            {
-                targets: 5,
-                className: 'dt-actions-center'
-            }
-           
-        ],
-        */
+        
         columns: [
             
             { data: "start"},
@@ -64,13 +53,8 @@ $(function(){
             { data: "userDni"},
             { data: "userName"},
             { data: "userEmail" },
-            
-           
         ]
-        
-     
     });
-
 
     eventosDatatable = $('#eventosTable').DataTable({
         stateSave: true,
@@ -79,7 +63,6 @@ $(function(){
         bLengthChange: false,
         pageLength: 20,
         language: {
-            //url: "/js/datatables/es.json",
             decimal: "",
             emptyTable: "No hay niguna reserva de sala",
             info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
@@ -99,8 +82,6 @@ $(function(){
                 next: "Siguiente",
                 previous: "Anterior"
             }
-
-
         },
         ajax: {
             url: eventosUrl,
@@ -114,33 +95,15 @@ $(function(){
             }
            
         ],
-        /*
-        columnDefs: [
-            {
-                targets: 5,
-                className: 'dt-actions-center'
-            }
-           
-        ],
-        */
+       
         columns: [
             
             { data: "start"},
             { data: "end" },
-            { data: "salaNombre"},
-           
+            { data: "salaNombre"},   
         ]
-        
-     
+       
     });
-    /*
-    eventosDatatable.on('search.dt', function(e, settings) {
-        var api = new $.fn.dataTable.Api( settings );
-        var state = api.state();
-        eventosDatatable.state.save();
-    }); 
-    */
-
 });
 
 var eventosDatatable = null;
